@@ -1,8 +1,9 @@
 import {configureStore} from "@reduxjs/toolkit";
+import tokenReducer from "../slices/JwtTokenSlice";
 
 export const store = configureStore({
     reducer: {
-
+        jwtToken: tokenReducer
     },
 })
 

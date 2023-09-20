@@ -1,6 +1,6 @@
 import SubError from "./SubError";
 
-export default class Error {
+export default class MyError {
     private readonly _suggestedAction: string
     private readonly _errorMessage: string
     private readonly _subErrors: Array<SubError>
