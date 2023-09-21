@@ -7,4 +7,12 @@ export default interface MyError {
     httpStatus: string
 }
 
-//Funtcion isMyError (my error is in error.data)
+export function isMyError(error: any): error is MyError {
+    return (
+        error != null &&
+        "suggestedAction" in error &&
+        "errorMessage" in error &&
+        "httpStatus" in error &&
+        "subErrors" in error
+    )
+}
