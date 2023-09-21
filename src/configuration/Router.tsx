@@ -4,6 +4,7 @@ import ErrorPage from "../components/ErrorPage";
 import LoginPage from "../components/LoginPage";
 import LandingPage from "../components/LandingPage";
 import ProjectsPage from "../components/ProjectsPage";
+import PasswordRecoveryPage from "../components/PasswordRecoveryPage";
 
 export const router = createBrowserRouter([
     {
@@ -25,5 +26,9 @@ export const router = createBrowserRouter([
                 ]
             }
         ]
+    }, {
+        path: "/change/password",
+        element: <PasswordRecoveryPage />,
+        errorElement: <ErrorPage />,
     }
 ])
