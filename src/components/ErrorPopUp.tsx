@@ -1,16 +1,18 @@
 import MyError, {isMyError} from "../objects/MyError";
 import SubError from "../objects/SubError";
+import Popup from "reactjs-popup";
+import {useState} from "react";
 
 interface ErrorPopUpProps {
     error: any
 }
 
 export default function ErrorPopUp(props: ErrorPopUpProps) {
+    const [open, setOpen] = useState(true);
     let error = setUpError()
 
     function setUpError(): MyError {
-        console.log(props.error.data)
-        if (isMyError(JSON.parse(props.error.data))) {
+        if ("data" in props.error && isMyError(JSON.parse(props.error.data))) {
             return JSON.parse(props.error.data)
         }
         else {
@@ -24,19 +26,21 @@ export default function ErrorPopUp(props: ErrorPopUpProps) {
     }
 
     return (
-        <div>
-            <p>Suggested Action: {error.suggestedAction}</p>
-            <p>Error Message: {error.errorMessage}</p>
-            <p>Http Status: {error.httpStatus}</p>
-            <SubErrors subErrors={error.subErrors} />
-        </div>
+        <Popup open={open} closeOnDocumentClick position={"right top"}>
+            <div>
+                <p>Suggested Action: {error.suggestedAction}</p>
+                <p>Error Message: {error.errorMessage}</p>
+                <p>Http Status: {error.httpStatus}</p>
+                <SubErrors subErrors={error.subErrors}/>
+                <button onClick={() => setOpen(false)}>Close</button>
+            </div>
+        </Popup>
     )
 }
 
 interface SubErrorsProps {
     subErrors: Array<SubError>
 }
-
 function SubErrors(props: SubErrorsProps) {
     const isMoreErrors = props.subErrors.length > 0
 
@@ -48,7 +52,7 @@ function SubErrors(props: SubErrorsProps) {
         <div>
             <ul>
                 {props.subErrors.map(it => {
-                    return <li>
+                    return <li key={it.errorMessage}>
                         Message: {it.errorMessage}
                         Action: {it.suggestedAction}
                     </li>

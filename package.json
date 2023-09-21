@@ -24,7 +24,8 @@
     "web-vitals": "^2.1.4",
     "firebase": "^10.3.0",
     "sass": "^1.64.2",
-    "node-sass": "^9.0.0"
+    "node-sass": "^9.0.0",
+    "reactjs-popup": "^2.0.6"
   },
   "scripts": {
     "start": "react-scripts start",
