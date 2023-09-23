@@ -13,8 +13,6 @@ export default function ErrorPopUp(props: ErrorPopUpProps) {
     let error = setUpError()
 
     function setUpError(): MyError {
-        console.log(props.error)
-
         if ("data" in props.error && isMyError(props.error.data)) {
             return props.error.data as MyError
         }
