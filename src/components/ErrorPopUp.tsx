@@ -2,6 +2,7 @@ import MyError, {isMyError} from "../objects/MyError";
 import SubError from "../objects/SubError";
 import Popup from "reactjs-popup";
 import {useState} from "react";
+import "../css/Popup.sass"
 
 interface ErrorPopUpProps {
     error: any
