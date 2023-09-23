@@ -7,12 +7,12 @@ import ErrorPopUp from "./ErrorPopUp";
 export default function PasswordRecoveryPage() {
     const [
         sendEmail,
-        { error: emailError, isLoading: isEmailSending }
+        { error: emailError, isError: isEmailError, isLoading: isEmailSending}
     ] = useSendEmailMutation()
 
     const [
         changePassword,
-        { error: changePasswordError, isLoading }
+        { error: changePasswordError, isError: isPasswordError, isLoading: isPasswordChanging}
     ] = useChangePasswordMutation()
 
     const [email, setEmail] = useState("")
@@ -28,7 +28,7 @@ export default function PasswordRecoveryPage() {
     }
 
     if (token != null) {
-        if (isLoading)
+        if (isPasswordChanging)
             return (
                 <div>
                     <p>Password is changing</p>
@@ -38,7 +38,7 @@ export default function PasswordRecoveryPage() {
             )
         return (
             <div>
-                { changePasswordError && <ErrorPopUp error={changePasswordError}/> }
+                { isPasswordError && <ErrorPopUp error={changePasswordError}/> }
                 { isFormValid || <Alert severity="error">Password does not match</Alert> }
                 <form onSubmit={e => {
                     e.preventDefault()
@@ -79,7 +79,7 @@ export default function PasswordRecoveryPage() {
 
     return (
         <div>
-            { emailError && <ErrorPopUp error={emailError} /> }
+            { isEmailError && <ErrorPopUp error={emailError} /> }
             <form onSubmit={e => {
                 e.preventDefault()
                 sendEmail(email)

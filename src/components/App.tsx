@@ -11,7 +11,7 @@ import ErrorPopUp from "./ErrorPopUp";
 function App() {
     const [
         authenticate,
-        {data: jwtToken, error, isLoading }
+        {data: jwtToken, error, isError }
     ] = useAuthenticateMutation()
 
     const [isPasswordRecovery, setPasswordRecovery] = useState(false)
@@ -24,7 +24,7 @@ function App() {
 
     return (
         <div className="App">
-            { error && <ErrorPopUp error={error} />}
+            { isError && <ErrorPopUp error={error} />}
             { (!isPasswordRecovery && !isJwtSet) && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/> }
             { isPasswordRecovery && <PasswordRecoveryPage /> }
             { isJwtSet && <Outlet /> }
