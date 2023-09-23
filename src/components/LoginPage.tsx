@@ -1,5 +1,6 @@
 import {useState} from "react";
 import {Button, TextField} from "@mui/material";
+import CreateUserComponent from "./CreateUserComponent";
 
 interface LoginProps {
     authenticate: any
@@ -11,6 +12,7 @@ export default function LoginPage(props: LoginProps) {
     const [password, setPassword] = useState("")
     const [validUsername, setValidUsername] = useState(true)
     const [validPassword, setValidPassword] = useState(true)
+    const [isCreateUser, setCreateUser] = useState(false)
 
     function validateForm() {
         let doThrow = false
@@ -28,6 +30,13 @@ export default function LoginPage(props: LoginProps) {
         if (doThrow)
             throw new Error(`Invalid form completion`)
     }
+
+    if (isCreateUser)
+        return (
+            <div>
+                <CreateUserComponent setCreateUser={setCreateUser}/>
+            </div>
+        )
 
     return (
         <form onSubmit={e => {
@@ -87,6 +96,10 @@ export default function LoginPage(props: LoginProps) {
             <Button variant="outlined" onClick={
                 e => props.setPasswordRecovery(true)
             }>Recover Password</Button>
+            <Button variant="outlined" onClick={
+                e => setCreateUser(true)
+            }>Register</Button>
+
         </form>
     )
 }
