@@ -14,7 +14,7 @@ export const authApi = createApi({
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                responseHandler: (response) => response.text()
+                responseHandler: (response) => response.ok ? response.text() : response.json()
             }),
             invalidatesTags: ['Auth']
         })
