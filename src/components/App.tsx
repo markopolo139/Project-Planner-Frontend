@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Outlet} from "react-router-dom";
 import LoginPage from "./LoginPage";
 import {useAuthenticateMutation} from "../api/AuthApi";
@@ -18,9 +18,11 @@ function App() {
     const dispatch = useAppDispatch();
     const isJwtSet = useAppSelector(selectJwtToken).length > 0;
 
-    if (jwtToken !== undefined && jwtToken.length > 0) {
-        dispatch(set(jwtToken))
-    }
+    useEffect(() => {
+        if (jwtToken !== undefined && jwtToken.length > 0) {
+            dispatch(set(jwtToken))
+        }
+    })
 
     return (
         <div className="App">

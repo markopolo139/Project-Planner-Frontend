@@ -13,13 +13,17 @@ export default function LandingPage() {
     const [isTokenSet, setTokenCheck] = useState(false)
     const [tokenMessage, setTokenMessage] = useState("")
 
+    //TODO: add sass to login, errorPopUp, password recovery, error page and create user
     return (
         <div>
             { isError && <ErrorPopUp error={error} /> }
             { isTokenSet || <Button variant="outlined" onClick= {(e) => {
-                getAppToken(addNotificationToken, setTokenCheck, setTokenMessage).catch()
+                getAppToken(addNotificationToken, setTokenMessage).then( () =>
+                    setTokenCheck(true)
+                )
             }}>Set Notifications</Button> }
             { isTokenSet && <h2>{tokenMessage}</h2> }
+
         </div>
     )
 }
