@@ -7,18 +7,19 @@ import {useState} from "react";
 export default function LandingPage() {
     const [
         addNotificationToken,
-        { error, isError, isSuccess }
+        { error, isError }
     ] = useAddNotificationTokenMutation()
 
     const [isTokenSet, setTokenCheck] = useState(false)
+    const [tokenMessage, setTokenMessage] = useState("")
 
     return (
         <div>
             { isError && <ErrorPopUp error={error} /> }
-            { isSuccess && <h2>Token sent</h2> }
             { isTokenSet || <Button variant="outlined" onClick= {(e) => {
-                getAppToken(addNotificationToken, setTokenCheck).catch()
+                getAppToken(addNotificationToken, setTokenCheck, setTokenMessage).catch()
             }}>Set Notifications</Button> }
+            { isTokenSet && <h2>{tokenMessage}</h2> }
         </div>
     )
 }

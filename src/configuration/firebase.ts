@@ -16,17 +16,14 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const messaging = getMessaging(firebaseApp)
 
-export const getAppToken = async (addToken: any, setTokenCheck: any) => {
+export const getAppToken = async (addToken: any, setTokenCheck: any, setTokenMessage: any) => {
     let currentToken = await getToken(messaging, { vapidKey: "BGuoLNhZ25TbBZVydBk06qkKbJBT-O9mZ9YWdZ1VDJ4wUrp8nCmxWcT_xYNJfkstFY_TgUeqe70uwoeAEMWvWsA" })
-    try {
-        setTokenCheck(true)
-        if(currentToken) {
-            addToken(currentToken)
-        }
-        else {
-            console.log("Permission not granted")
-        }
-    } catch (err) {
-        throw new MyErrorClass("Contact Admin", "Error during getting token for notifications in firebase", [], "INTERNAL_SERVER_ERROR")
+    setTokenCheck(true)
+    if(currentToken) {
+        addToken(currentToken)
+        setTokenMessage("Notification set")
+    }
+    else {
+        setTokenMessage("Permission not granted")
     }
 }
