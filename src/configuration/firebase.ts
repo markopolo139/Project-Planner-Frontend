@@ -1,6 +1,7 @@
 import {initializeApp} from "firebase/app";
 import {getMessaging, getToken} from "firebase/messaging";
 import React from "react";
+import MyError, {MyErrorClass} from "../objects/MyError";
 
 const firebaseConfig = {
     apiKey: "AIzaSyBox8-G3qWbE0Uratk-7SEJSo0WptGXjQU",
@@ -15,21 +16,17 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const messaging = getMessaging(firebaseApp)
 
-export const getAppToken = async (setTokenFound: React.Dispatch<React.SetStateAction<boolean>>) => {
+export const getAppToken = async (addToken: any, setTokenCheck: any) => {
     let currentToken = await getToken(messaging, { vapidKey: "BGuoLNhZ25TbBZVydBk06qkKbJBT-O9mZ9YWdZ1VDJ4wUrp8nCmxWcT_xYNJfkstFY_TgUeqe70uwoeAEMWvWsA" })
     try {
+        setTokenCheck(true)
         if(currentToken) {
-            console.log('current token for client: ', currentToken);
-            setTokenFound(true)
-            return currentToken
+            addToken(currentToken)
         }
         else {
-            console.log('No registration token available. Request permission to generate one.');
-            setTokenFound(false);
-            return ""
+            console.log("Permission not granted")
         }
     } catch (err) {
-        console.log('An error occurred while retrieving token. ', err);
-        return ""
+        throw new MyErrorClass("Contact Admin", "Error during getting token for notifications in firebase", [], "INTERNAL_SERVER_ERROR")
     }
 }
