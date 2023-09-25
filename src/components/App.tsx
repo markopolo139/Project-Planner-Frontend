@@ -7,6 +7,7 @@ import {useAppDispatch, useAppSelector} from "../configuration/StoreHooks";
 import {selectJwtToken, set} from "../slices/JwtTokenSlice";
 import PasswordRecoveryPage from "./PasswordRecoveryPage";
 import ErrorPopUp from "./ErrorPopUp";
+import styles from "../css/App.module.sass"
 
 function App() {
     const [
@@ -25,11 +26,14 @@ function App() {
     })
 
     return (
-        <div className="App">
-            { isError && <ErrorPopUp error={error} />}
-            { (!isPasswordRecovery && !isJwtSet) && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/> }
-            { isPasswordRecovery && <PasswordRecoveryPage /> }
-            { isJwtSet && <Outlet /> }
+        <div className={styles.app}>
+            <header className={styles.header}>Project Overview</header>
+            <div className={styles.forms}>
+                { isError && <ErrorPopUp error={error} />}
+                { (!isPasswordRecovery && !isJwtSet) && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/> }
+                { isPasswordRecovery && <PasswordRecoveryPage /> }
+            </div>
+            { isJwtSet && <div className={styles.outlet}><Outlet /></div>}
         </div>
     );
 }

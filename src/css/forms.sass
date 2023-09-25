@@ -1,10 +1,17 @@
 %forms
   display: flex
-  justify-content: center
-  align-content: center
-  height: 50rem
+  justify-self: center
+  align-self: center
   flex-direction: column
-  width: 25%
+  background-color: #91C8E4
+  border-radius: 30px
 
-  //& .TextField
-  //  margin: 10px
+  & :global(.TextField)
+    margin: 1rem
+      top: 0
+      bottom: 0.75rem
+
+  & :global(.Button)
+    margin: 1rem
+      top: 0
+      bottom: 0.5rem

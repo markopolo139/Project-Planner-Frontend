@@ -1,4 +1,31 @@
 @import forms.sass
 
+.formDiv
+  display: flex
+  width: 100%
+  justify-content: center
+
 .forms
   @extend %forms
+  & div
+    display: flex
+    justify-content: space-evenly
+  & div :global(.Button)
+    width: 100%
+    color: black
+    border-color: black
+  & div :global(.Button):hover
+    border-color: #F6F4EB
+    color: #F6F4EB
+  & h2
+    align-self: center
+  width: 35%
+  height: 45%
+
+.recovery
+  margin: 1rem
+  cursor: pointer
+  align-self: center
+  opacity: 75%
+  &:hover
+    color: #F6F4EB
