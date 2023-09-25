@@ -3,6 +3,7 @@ import {useUserCreateMutation} from "../api/CreateUserApi";
 import ErrorPopUp from "./ErrorPopUp";
 import {useForm} from "react-hook-form";
 import CreateUserModel from "../objects/CreateUserModel";
+import styles from "../css/CreateUser.module.sass"
 
 interface CreateUserProps {
     setCreateUser: any
@@ -16,14 +17,10 @@ export default function CreateUserComponent(props: CreateUserProps) {
 
     const { register, handleSubmit } = useForm();
 
-    if (isLoading) {
-        return <CircularProgress />
-    }
-
     if (isSuccess) {
         return (
-            <div>
-                <p>User created</p>
+            <div className={styles.userCreated}>
+                <h2>User created</h2>
                 <Button className="Button" variant="outlined" onClick={e => {
                     props.setCreateUser(false)
                 }}>Return</Button>
@@ -32,11 +29,12 @@ export default function CreateUserComponent(props: CreateUserProps) {
     }
 
     return (
-        <div>
+        <div className={styles.formDiv}>
             { isError && <ErrorPopUp error={error} /> }
-            <form onSubmit={ handleSubmit((data) => {
+            <form className={styles.forms} onSubmit={ handleSubmit((data) => {
                 createUser(data as CreateUserModel)
             }) }>
+                <h2>Create user:</h2>
                 <TextField
                     className="TextField" label="username" variant="outlined" type="text" {...register("username")}
                 />
@@ -47,11 +45,14 @@ export default function CreateUserComponent(props: CreateUserProps) {
                 <TextField
                     className="TextField" label="email" variant="outlined" type="email" {...register("email")}
                 />
-                <Button className="Button" variant="outlined" type="submit">Create account</Button>
+                <div>
+                    <Button className="Button" variant="outlined" type="submit">Create account</Button>
+                    <Button className="Button" variant="outlined" onClick={e => {
+                        props.setCreateUser(false)
+                    }}>Return</Button>
+                </div>
             </form>
-            <Button className="Button" variant="outlined" onClick={e => {
-                props.setCreateUser(false)
-            }}>Return</Button>
+            { isLoading && <CircularProgress /> }
         </div>
     )
 }

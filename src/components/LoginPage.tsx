@@ -33,11 +33,7 @@ export default function LoginPage(props: LoginProps) {
     }
 
     if (isCreateUser)
-        return (
-            <div>
-                <CreateUserComponent setCreateUser={setCreateUser}/>
-            </div>
-        )
+        return <CreateUserComponent setCreateUser={setCreateUser}/>
 
     return (
         <div className={styles.formDiv}>
