@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {Button, TextField} from "@mui/material";
 import CreateUserComponent from "./CreateUserComponent";
+import styles from "../css/LoginPage.module.sass"
 
 interface LoginProps {
     authenticate: any
@@ -39,7 +40,7 @@ export default function LoginPage(props: LoginProps) {
         )
 
     return (
-        <form onSubmit={e => {
+        <form className={styles.forms} onSubmit={e => {
             e.preventDefault()
             try {
 
@@ -57,12 +58,13 @@ export default function LoginPage(props: LoginProps) {
         }}>
             {
                 validUsername && <TextField
-                    label="username" variant="outlined" value={username} onChange={e => {
+                    className="TextField" label="username" variant="outlined" value={username} onChange={e => {
                     setUsername(e.target.value.trim())
                 }}/>
             }
             {
                 validUsername || <TextField
+                    className="TextField"
                     error
                     helperText="Username must not be blank"
                     label="username" variant="outlined"
@@ -72,16 +74,15 @@ export default function LoginPage(props: LoginProps) {
                     }}
                 />
             }
-            <br/>
-            <br/>
             {
                 validPassword && <TextField
-                    label="password" variant="outlined" type="password" value={password} onChange={e => {
+                    className="TextField" label="password" variant="outlined" type="password" value={password} onChange={e => {
                     setPassword(e.target.value.trim())
                 }}/>
             }
             {
                 validPassword || <TextField
+                    className="TextField"
                     error
                     helperText="Password must not be blank"
                     label="password" variant="outlined" type="password"
@@ -91,7 +92,6 @@ export default function LoginPage(props: LoginProps) {
                     }}
                 />
             }
-            <br/>
             <Button variant="outlined" type="submit">login</Button>
             <Button variant="outlined" onClick={
                 e => props.setPasswordRecovery(true)

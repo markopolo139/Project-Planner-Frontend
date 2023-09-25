@@ -50,19 +50,16 @@ export default function PasswordRecoveryPage() {
                     }
                 }}>
                     <TextField
-                        label="New Password" variant="outlined" type="password" onChange={e => {
+                        className="TextField" label="New Password" variant="outlined" type="password" onChange={e => {
                         setPassword(e.target.value.trim())
                     }}
                     />
-                    <br/>
-                    <br/>
                     <TextField
-                        label="Confirm New Password" variant="outlined" type="password" onChange={e => {
+                        className="TextField" label="Confirm New Password" variant="outlined" type="password" onChange={e => {
                         setConfirmPassword(e.target.value.trim())
                     }}
                     />
-                    <br/>
-                    <Button variant="outlined" type="submit">Change Password</Button>
+                    <Button className="Button" variant="outlined" type="submit">Change Password</Button>
                 </form>
             </div>
         )
@@ -85,12 +82,11 @@ export default function PasswordRecoveryPage() {
                 sendEmail(email)
             }}>
                 <TextField
-                    label="email" variant="outlined" type="email" onChange={e => {
+                    className="TextField" label="email" variant="outlined" type="email" onChange={e => {
                         setEmail(e.target.value.trim())
                     }}
                 />
-                <br/>
-                <Button variant="outlined" type="submit">Send message</Button>
+                <Button className="Button" variant="outlined" type="submit">Send message</Button>
             </form>
         </div>
     )

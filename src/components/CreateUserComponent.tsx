@@ -24,7 +24,7 @@ export default function CreateUserComponent(props: CreateUserProps) {
         return (
             <div>
                 <p>User created</p>
-                <Button variant="outlined" onClick={e => {
+                <Button className="Button" variant="outlined" onClick={e => {
                     props.setCreateUser(false)
                 }}>Return</Button>
             </div>
@@ -38,22 +38,18 @@ export default function CreateUserComponent(props: CreateUserProps) {
                 createUser(data as CreateUserModel)
             }) }>
                 <TextField
-                    label="username" variant="outlined" type="text" {...register("username")}
+                    className="TextField" label="username" variant="outlined" type="text" {...register("username")}
                 />
-                <br/>
-                <br/>
+
                 <TextField
-                    label="password" variant="outlined" type="password" {...register("password")}
+                    className="TextField" label="password" variant="outlined" type="password" {...register("password")}
                 />
-                <br/>
-                <br/>
                 <TextField
-                    label="email" variant="outlined" type="email" {...register("email")}
+                    className="TextField" label="email" variant="outlined" type="email" {...register("email")}
                 />
-                <br/>
-                <Button variant="outlined" type="submit">Create account</Button>
+                <Button className="Button" variant="outlined" type="submit">Create account</Button>
             </form>
-            <Button variant="outlined" onClick={e => {
+            <Button className="Button" variant="outlined" onClick={e => {
                 props.setCreateUser(false)
             }}>Return</Button>
         </div>
