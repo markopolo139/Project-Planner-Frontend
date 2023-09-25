@@ -4,8 +4,8 @@ import {Provider} from "react-redux";
 import {store} from "./configuration/Strore";
 import {RouterProvider} from "react-router-dom";
 import {router} from "./configuration/Router";
+import "./css/index.sass"
 
-//TODO: add css later
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
