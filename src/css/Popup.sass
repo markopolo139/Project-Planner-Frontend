@@ -1,16 +1,56 @@
 .popup-content
   margin: auto
-  background: rgb(255, 255, 255)
-  width: 50%
-  padding: 5px
+  background: #E9F1FA
+  width: 25%
+  padding: 1rem
+  border-radius: 30px
 
-.popup-arrow
-  color: rgb(255, 255, 255)
+.popup-text
+  display: flex
+  flex-direction: column
+
+.popup-header
+  display: flex
+  justify-content: space-between
+
+  & .popup-close
+    background-color: rgb(94, 182, 225)
+    border-radius: 45px
+    cursor: pointer
+    width: 6%
+    height: 6%
+
+  & .popup-close:hover
+    background-color: #00ABE4
+
+.popup-sub-errors
+  display: flex
+  flex-direction: column
+
+.popup-sub-errors .Button
+  margin: 1rem
+    top: 0
+    bottom: 0.5rem
+  color: #00ABE4
+  border-color: #00ABE4
+  background-color: #FFFFFF
+  height: 100%
+
+.popup-sub-errors .Button:hover
+  border-color: #00ABE4
+  color: #FFFFFF
+  background-color: #00ABE4
+  height: 100%
+
+.popup-sub-errors ul
+  margin-top: 0
+
+.popup-sub-errors-header
+  display: flex
 
 [role='tooltip'].popup-content
   width: 200px
   box-shadow: rgba(0, 0, 0, 0.16) 0px 0px 3px
-
 
 .popup-overlay
   background: rgba(0, 0, 0, 0.5)

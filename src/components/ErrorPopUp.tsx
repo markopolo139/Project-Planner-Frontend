@@ -3,6 +3,8 @@ import SubError from "../objects/SubError";
 import Popup from "reactjs-popup";
 import {useState} from "react";
 import "../css/Popup.sass"
+import CloseIcon from '@mui/icons-material/Close';
+import {Button, Icon} from "@mui/material";
 
 interface ErrorPopUpProps {
     error: any
@@ -27,13 +29,16 @@ export default function ErrorPopUp(props: ErrorPopUpProps) {
     }
 
     return (
-        <Popup open={open} closeOnDocumentClick position={"right top"}>
-            <div>
+        <Popup open={open} closeOnDocumentClick>
+            <div className="popup-header">
+                <h2>Error occurred</h2>
+                <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
+            </div>
+            <div className="popup-text">
                 <p>Suggested Action: {error.suggestedAction}</p>
                 <p>Error Message: {error.errorMessage}</p>
                 <p>Http Status: {error.httpStatus}</p>
-                <SubErrors subErrors={error.subErrors}/>
-                <button onClick={() => setOpen(false)}>Close</button>
+                <SubErrors subErrors={[{suggestedAction: "testAction", errorMessage: "testError"}, {suggestedAction: "testAction", errorMessage: "testError"}, {suggestedAction: "testAction", errorMessage: "testError"}]}/>
             </div>
         </Popup>
     )
@@ -44,21 +49,28 @@ interface SubErrorsProps {
 }
 function SubErrors(props: SubErrorsProps) {
     const isMoreErrors = props.subErrors.length > 0
+    const [showErrors, setShowErrors] = useState(false)
 
     if (!isMoreErrors) {
-        return <p>No sub errors</p>
+        return <div></div>
     }
 
     return (
-        <div>
-            <ul>
+        <div className="popup-sub-errors">
+            <div className="popup-sub-errors-header">
+                <p>SubErrors:</p>
+                <Button className="Button" onClick={e => setShowErrors(!showErrors)}>
+                    {showErrors ? "Hide" : "Show"} errors
+                </Button>
+            </div>
+            {showErrors && <ul>
                 {props.subErrors.map(it => {
                     return <li key={it.errorMessage}>
-                        Message: {it.errorMessage}
-                        Action: {it.suggestedAction}
+                        <p>Error message: {it.errorMessage} </p>
+                        <p>Suggested action: {it.suggestedAction}</p>
                     </li>
                 })}
-            </ul>
+            </ul>}
         </div>
     )
 }
