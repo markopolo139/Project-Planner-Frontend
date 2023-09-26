@@ -7,7 +7,7 @@ export const notificationApi = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: 'http://localhost:4200/api/v1/notification/',
         prepareHeaders: (headers, { getState }) => {
-            const token = (getState() as RootState).jwtToken.value
+            const token = (getState() as RootState).loggedInUser.jwtToken
 
             if (token) {
                 headers.set('authorization', `Bearer ${token}`)
