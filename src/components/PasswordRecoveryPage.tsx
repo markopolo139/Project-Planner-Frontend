@@ -1,10 +1,15 @@
 import {Alert, Button, CircularProgress, TextField} from "@mui/material";
-import {useState} from "react";
+import React, {useState} from "react";
 import useQuery from "../configuration/QueryHook";
 import {useChangePasswordMutation, useSendEmailMutation} from "../api/RecoveryPasswordApi";
 import ErrorPopUp from "./ErrorPopUp";
+import styles from "../css/PasswordRecovery.module.sass"
 
-export default function PasswordRecoveryPage() {
+interface PasswordRecoveryProps {
+    setPasswordRecovery: any
+}
+
+export default function PasswordRecoveryPage(props: PasswordRecoveryProps) {
     const [
         sendEmail,
         { error: emailError, isError: isEmailError, isLoading: isEmailSending}
@@ -28,65 +33,60 @@ export default function PasswordRecoveryPage() {
     }
 
     if (token != null) {
-        if (isPasswordChanging)
-            return (
-                <div>
-                    <p>Password is changing</p>
-                    <br/>
-                    <CircularProgress />
-                </div>
-            )
         return (
             <div>
+                <header className={styles.header}>Project Overview</header>
                 { isPasswordError && <ErrorPopUp error={changePasswordError}/> }
                 { isFormValid || <Alert severity="error">Password does not match</Alert> }
-                <form onSubmit={e => {
-                    e.preventDefault()
-                    try {
-                        validateNewPassword()
-                        changePassword({ newPassword, token })
-                    } catch (e: any) {
-                        setValidForm(false)
-                    }
-                }}>
-                    <TextField
-                        className="TextField" label="New Password" variant="outlined" type="password" onChange={e => {
-                        setPassword(e.target.value.trim())
-                    }}
-                    />
-                    <TextField
-                        className="TextField" label="Confirm New Password" variant="outlined" type="password" onChange={e => {
-                        setConfirmPassword(e.target.value.trim())
-                    }}
-                    />
-                    <Button className="Button" variant="outlined" type="submit">Change Password</Button>
-                </form>
+                <div className={styles.passwordDiv}>
+                    <form className={styles.forms} onSubmit={e => {
+                        e.preventDefault()
+                        try {
+                            validateNewPassword()
+                            changePassword({ newPassword, token })
+                        } catch (e: any) {
+                            setValidForm(false)
+                        }
+                    }}>
+                        <h2>Change Password:</h2>
+                        <TextField
+                            className="TextField" label="New Password" variant="outlined" type="password" onChange={e => {
+                            setPassword(e.target.value.trim())
+                        }}
+                        />
+                        <TextField
+                            className="TextField" label="Confirm New Password" variant="outlined" type="password" onChange={e => {
+                            setConfirmPassword(e.target.value.trim())
+                        }}
+                        />
+                        <Button className="Button" variant="outlined" type="submit">Change Password</Button>
+                        { isPasswordChanging && <CircularProgress /> }
+                    </form>
+                </div>
             </div>
         )
     }
 
-    if (isEmailSending)
-        return (
-            <div>
-                <p>Message is being sent</p>
-                <br/>
-                <CircularProgress />
-            </div>
-        )
-
     return (
-        <div>
+        <div className={styles.formDiv}>
             { isEmailError && <ErrorPopUp error={emailError} /> }
-            <form onSubmit={e => {
+            <form className={styles.forms} onSubmit={e => {
                 e.preventDefault()
                 sendEmail(email)
             }}>
+                <h2>Recovery Password:</h2>
                 <TextField
                     className="TextField" label="email" variant="outlined" type="email" onChange={e => {
                         setEmail(e.target.value.trim())
                     }}
                 />
-                <Button className="Button" variant="outlined" type="submit">Send message</Button>
+                <div>
+                    <Button className="Button" variant="outlined" type="submit">Send message</Button>
+                    <Button className="Button" variant="outlined" onClick={e => {
+                        props.setPasswordRecovery(false)
+                    }}>Return</Button>
+                </div>
+                {isEmailSending && <CircularProgress /> }
             </form>
         </div>
     )

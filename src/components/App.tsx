@@ -28,11 +28,11 @@ function App() {
     return (
         <div className={styles.app}>
             <header className={styles.header}>Project Overview</header>
-            <div className={styles.forms}>
-                { isError && <ErrorPopUp error={error} />}
-                { (!isPasswordRecovery && !isJwtSet) && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/> }
-                { isPasswordRecovery && <PasswordRecoveryPage /> }
-            </div>
+            { isError && <ErrorPopUp error={error} />}
+            { !isJwtSet && <div className={styles.forms}>
+                {!isPasswordRecovery && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/>}
+                {isPasswordRecovery && <PasswordRecoveryPage setPasswordRecovery={setPasswordRecovery}/>}
+            </div> }
             { isJwtSet && <div className={styles.outlet}><Outlet /></div>}
         </div>
     );

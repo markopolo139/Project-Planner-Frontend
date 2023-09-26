@@ -28,7 +28,7 @@ export const router = createBrowserRouter([
         ]
     }, {
         path: "/change/password",
-        element: <PasswordRecoveryPage />,
+        element: <PasswordRecoveryPage setPasswordRecovery={ null }/>,
         errorElement: <ErrorPage />,
     }
 ])
