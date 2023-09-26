@@ -11,6 +11,14 @@ export const router = createBrowserRouter([
     {
         path: "/",
         element: <App />,
+        errorElement: <ErrorPage />
+    }, {
+        path: "/change/password",
+        element: <PasswordRecoveryPage setPasswordRecovery={ null }/>,
+        errorElement: <ErrorPage />
+    }, {
+        path: "/home",
+        element: <LandingPage />,
         errorElement: <ErrorPage />,
         children: [
             {
@@ -18,22 +26,15 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
-                        element: <LandingPage />
-                    },
-                    {
-                        path: "projects",
+                        path: "/home/projects",
                         element: <ProjectsPage />
                     },
                     {
-                        path: "project/plans",
+                        path: "/home/project/plans",
                         element: <ProjectPlansPage />
                     }
                 ]
             }
         ]
-    }, {
-        path: "/change/password",
-        element: <PasswordRecoveryPage setPasswordRecovery={ null }/>,
-        errorElement: <ErrorPage />,
     }
 ])

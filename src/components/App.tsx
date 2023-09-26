@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Outlet} from "react-router-dom";
+import {Navigate, Outlet} from "react-router-dom";
 import LoginPage from "./LoginPage";
 import {useAuthenticateMutation} from "../api/AuthApi";
 import {useAppDispatch, useAppSelector} from "../configuration/StoreHooks";
@@ -32,7 +32,7 @@ function App() {
                 {!isPasswordRecovery && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/>}
                 {isPasswordRecovery && <PasswordRecoveryPage setPasswordRecovery={setPasswordRecovery}/>}
             </div> }
-            { isJwtSet && <div className={styles.outlet}><Outlet /></div>}
+            { isJwtSet && <Navigate to="/home" replace={true} /> }
         </div>
     );
 }
