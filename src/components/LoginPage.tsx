@@ -2,6 +2,8 @@ import {useState} from "react";
 import {Button, TextField} from "@mui/material";
 import CreateUserComponent from "./CreateUserComponent";
 import styles from "../css/LoginPage.module.sass"
+import {useAppDispatch} from "../configuration/StoreHooks";
+import {setLoggedInUsername} from "../slices/LoggedInUserSlice";
 
 interface LoginProps {
     authenticate: any
@@ -14,6 +16,7 @@ export default function LoginPage(props: LoginProps) {
     const [validUsername, setValidUsername] = useState(true)
     const [validPassword, setValidPassword] = useState(true)
     const [isCreateUser, setCreateUser] = useState(false)
+    const dispatch = useAppDispatch();
 
     function validateForm() {
         let doThrow = false
@@ -47,6 +50,7 @@ export default function LoginPage(props: LoginProps) {
                     validateForm()
 
                     props.authenticate({username, password})
+                    dispatch(setLoggedInUsername(username))
                     props.setPasswordRecovery(false)
                 } catch (e: any) {
                     const error = e as Error

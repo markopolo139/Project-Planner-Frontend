@@ -1,13 +1,13 @@
 import {configureStore} from "@reduxjs/toolkit";
-import tokenReducer from "../slices/JwtTokenSlice";
 import {authApi} from "../api/AuthApi";
 import {recoveryPasswordApi} from "../api/RecoveryPasswordApi";
 import {createUserApi} from "../api/CreateUserApi";
 import {notificationApi} from "../api/NotificationApi";
+import loggedInUserReducer from "../slices/LoggedInUserSlice";
 
 export const store = configureStore({
     reducer: {
-        jwtToken: tokenReducer,
+        loggedInUser: loggedInUserReducer,
         [authApi.reducerPath]: authApi.reducer,
         [recoveryPasswordApi.reducerPath]: recoveryPasswordApi.reducer,
         [createUserApi.reducerPath]: createUserApi.reducer,

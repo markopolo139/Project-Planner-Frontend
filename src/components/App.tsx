@@ -2,9 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Outlet} from "react-router-dom";
 import LoginPage from "./LoginPage";
 import {useAuthenticateMutation} from "../api/AuthApi";
-import {CircularProgress} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../configuration/StoreHooks";
-import {selectJwtToken, set} from "../slices/JwtTokenSlice";
+import {selectJwtToken, setJwtToken} from "../slices/LoggedInUserSlice";
 import PasswordRecoveryPage from "./PasswordRecoveryPage";
 import ErrorPopUp from "./ErrorPopUp";
 import styles from "../css/App.module.sass"
@@ -21,7 +20,7 @@ function App() {
 
     useEffect(() => {
         if (jwtToken !== undefined && jwtToken.length > 0) {
-            dispatch(set(jwtToken))
+            dispatch(setJwtToken(jwtToken))
         }
     })
 
