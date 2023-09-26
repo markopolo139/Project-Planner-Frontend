@@ -38,7 +38,7 @@ export default function ErrorPopUp(props: ErrorPopUpProps) {
                 <p>Suggested Action: {error.suggestedAction}</p>
                 <p>Error Message: {error.errorMessage}</p>
                 <p>Http Status: {error.httpStatus}</p>
-                <SubErrors subErrors={[{suggestedAction: "testAction", errorMessage: "testError"}, {suggestedAction: "testAction", errorMessage: "testError"}, {suggestedAction: "testAction", errorMessage: "testError"}]}/>
+                <SubErrors subErrors={error.subErrors}/>
             </div>
         </Popup>
     )
