@@ -16,13 +16,9 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig)
 const messaging = getMessaging(firebaseApp)
 
-export const getAppToken = async (addToken: any, setTokenMessage: any) => {
+export const getAppToken = async (addToken: any) => {
     let currentToken = await getToken(messaging, { vapidKey: "BGuoLNhZ25TbBZVydBk06qkKbJBT-O9mZ9YWdZ1VDJ4wUrp8nCmxWcT_xYNJfkstFY_TgUeqe70uwoeAEMWvWsA" })
     if(currentToken) {
         addToken(currentToken)
-        setTokenMessage("Notification set")
-    }
-    else {
-        setTokenMessage("Permission not granted")
     }
 }
