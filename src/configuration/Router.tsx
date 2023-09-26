@@ -5,6 +5,7 @@ import LoginPage from "../components/LoginPage";
 import LandingPage from "../components/LandingPage";
 import ProjectsPage from "../components/ProjectsPage";
 import PasswordRecoveryPage from "../components/PasswordRecoveryPage";
+import ProjectPlansPage from "../components/ProjectPlansPage";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
                     {
                         path: "projects",
                         element: <ProjectsPage />
+                    },
+                    {
+                        path: "project/plans",
+                        element: <ProjectPlansPage />
                     }
                 ]
             }
