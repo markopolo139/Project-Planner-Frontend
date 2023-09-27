@@ -6,6 +6,10 @@ import LandingPage from "../components/LandingPage";
 import ProjectsPage from "../components/ProjectsPage";
 import PasswordRecoveryPage from "../components/PasswordRecoveryPage";
 import ProjectPlansPage from "../components/ProjectPlansPage";
+import UserSettingsPage from "../components/UserSettingsPage";
+import ChangeUsernameForm from "../components/ChangeUsernameForm";
+import ChangePasswordForm from "../components/ChangePasswordForm";
+import ChangeEmailForm from "../components/ChangeEmailForm";
 
 export const router = createBrowserRouter([
     {
@@ -26,12 +30,31 @@ export const router = createBrowserRouter([
                 children: [
                     {
                         index: true,
+                        element: <ProjectsPage />
+                    },
+                    {
                         path: "/home/projects",
                         element: <ProjectsPage />
                     },
                     {
                         path: "/home/project/plans",
                         element: <ProjectPlansPage />
+                    },
+                    {
+                        path: "/home/user/settings",
+                        element: <UserSettingsPage />,
+                        children: [
+                            {
+                                path: "/home/user/settings/username",
+                                element: <ChangeUsernameForm />,
+                            },{
+                                path: "/home/user/settings/password",
+                                element: <ChangePasswordForm />,
+                            },{
+                                path: "/home/user/settings/email",
+                                element: <ChangeEmailForm />,
+                            },
+                        ]
                     }
                 ]
             }
