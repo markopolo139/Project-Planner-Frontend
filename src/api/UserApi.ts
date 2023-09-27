@@ -17,10 +17,10 @@ export const userApi = createApi({
     }),
     tagTypes: ['User'],
     endpoints: (builder) => ({
-        deleteUser: builder.mutation({
+        deleteUser: builder.mutation<void, void>({
             query: () => ({
                 url: "delete",
-                method: "POST",
+                method: "DELETE",
             }),
             invalidatesTags: ['User']
         }),
@@ -56,7 +56,7 @@ export const userApi = createApi({
 })
 
 export const {
-    useChangeUsernameMutation, useChangeEmailMutation,
-    useChangePasswordMutation, useDeleteUserMutation,
+    useDeleteUserMutation, useChangeUsernameMutation,
+    useChangePasswordMutation, useChangeEmailMutation,
     useGetEmailQuery
 } = userApi
