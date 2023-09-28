@@ -1,0 +1,85 @@
+.mainDiv
+  display: flex
+  flex-direction: row
+  height: 100%
+
+.navbar
+  display: flex
+  flex-direction: column
+  align-items: flex-start
+  width: 10%
+  height: 92.5vh
+  background-color: #91C8E4
+  & a
+    padding-left: 1rem
+    font-size: 1.15rem
+    display: flex
+    text-decoration: none
+    color: black
+    width: 100%
+    box-sizing: border-box
+    &:hover
+      color: #FFFFFF
+      background-color: #00ABE4
+  & span
+    box-sizing: border-box
+    cursor: pointer
+    padding-left: 1rem
+    font-size: 1.15rem
+    width: 100%
+    &:hover
+      color: #FFFFFF
+      background-color: #00ABE4
+  & h2
+    margin-bottom: 0.3rem
+    padding-left: 0.5rem
+    opacity: 0.5
+
+.content
+  display: flex
+  justify-content: center
+  align-items: center
+  width: 100%
+  & :global(.DeleteButton)
+    margin: 1rem
+      top: 0
+      bottom: 0.5rem
+    color: black
+    background-color: red
+  & :global(.DeleteButton):hover
+    color: #FFFFFF
+    background-color: red
+
+.delete_header_popup
+  display: flex
+  justify-content: space-between
+
+  & h2
+    margin: 0
+
+  & h1
+    margin: 0
+
+  & :global(.popup-close)
+    background-color: rgb(94, 182, 225)
+    border-radius: 45px
+    cursor: pointer
+    width: 25px
+    height: 25px
+
+  & :global(.popup-close):hover
+    background-color: #00ABE4
+
+  & div
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+.confirmButton
+  color: black
+  background-color: red
+  &:hover
+    color: #FFFFFF
+    background-color: red
