@@ -1,10 +1,10 @@
 import {useDispatch} from "react-redux";
 import React, {useState} from "react";
-import ErrorPopUp from "./ErrorPopUp";
-import {useChangeEmailMutation} from "../api/UserApi";
-import {setLoggedInEmail, setLoggedInUsername} from "../slices/LoggedInUserSlice";
+import ErrorPopup from "../error/ErrorPopup";
+import {useChangeEmailMutation} from "../../api/UserApi";
+import {setLoggedInEmail, setLoggedInUsername} from "../../slices/LoggedInUserSlice";
 import {Button, TextField} from "@mui/material";
-import styles from "../css/SettingsForm.module.sass"
+import styles from "../../css/SettingsForm.module.sass"
 
 export default function ChangeEmailForm() {
     const [changeEmail] = useChangeEmailMutation()
@@ -16,7 +16,7 @@ export default function ChangeEmailForm() {
 
     return (
         <div className={styles.formDiv}>
-            { error && <ErrorPopUp error={error} /> }
+            { error && <ErrorPopup error={error} /> }
             <form className={styles.forms} onSubmit={e => {
                 e.preventDefault()
                 setChanged(false)

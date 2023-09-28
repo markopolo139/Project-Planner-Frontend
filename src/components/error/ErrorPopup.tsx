@@ -1,8 +1,8 @@
-import MyError, {isMyError} from "../objects/MyError";
-import SubError from "../objects/SubError";
+import MyError, {isMyError} from "../../objects/MyError";
+import SubError from "../../objects/SubError";
 import Popup from "reactjs-popup";
 import {useState} from "react";
-import "../css/Popup.sass"
+import "../../css/Popup.sass"
 import CloseIcon from '@mui/icons-material/Close';
 import {Button, Icon} from "@mui/material";
 
@@ -10,7 +10,7 @@ interface ErrorPopUpProps {
     error: any
 }
 
-export default function ErrorPopUp(props: ErrorPopUpProps) {
+export default function ErrorPopup(props: ErrorPopUpProps) {
     const [open, setOpen] = useState(true);
     let error = setUpError()
 

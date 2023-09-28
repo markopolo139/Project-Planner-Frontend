@@ -4,10 +4,10 @@ import {Button} from "@mui/material";
 import Popup from "reactjs-popup";
 import CloseIcon from '@mui/icons-material/Close';
 import {useDispatch} from "react-redux";
-import {logout} from "../slices/LoggedInUserSlice";
-import {useDeleteUserMutation} from "../api/UserApi";
-import ErrorPopUp from "./ErrorPopUp";
-import styles from "../css/UserSettings.module.sass"
+import {logout} from "../../slices/LoggedInUserSlice";
+import {useDeleteUserMutation} from "../../api/UserApi";
+import ErrorPopup from "../error/ErrorPopup";
+import styles from "../../css/UserSettings.module.sass"
 
 export default function UserSettingsPage() {
     const [deleteUser] = useDeleteUserMutation()
@@ -21,10 +21,10 @@ export default function UserSettingsPage() {
         setOpen(false)
         deleteUser().unwrap().then( fulfilled => dispatch(logout())).catch(rejected => setError(rejected))
     }
-    //TODO: group components, css into more folders
+    //TODO: think how to show active component
     return (
         <div className={styles.mainDiv}>
-            { error && <ErrorPopUp error={error} /> }
+            { error && <ErrorPopup error={error} /> }
             <div className={styles.navbar}>
                 <h2>Settings</h2>
                 <Link onClick={(e) => {

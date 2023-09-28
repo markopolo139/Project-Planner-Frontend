@@ -1,9 +1,9 @@
 import {useState} from "react";
 import {Button, TextField} from "@mui/material";
 import CreateUserComponent from "./CreateUserComponent";
-import styles from "../css/LoginPage.module.sass"
-import {useAppDispatch} from "../configuration/StoreHooks";
-import {setLoggedInUsername} from "../slices/LoggedInUserSlice";
+import styles from "../../css/LoginPage.module.sass"
+import {useAppDispatch} from "../../configuration/StoreHooks";
+import {setLoggedInUsername} from "../../slices/LoggedInUserSlice";
 
 interface LoginProps {
     authenticate: any

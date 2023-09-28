@@ -1,7 +1,7 @@
-import {useAddNotificationTokenMutation} from "../api/NotificationApi";
-import {getAppToken} from "../configuration/firebase";
+import {useAddNotificationTokenMutation} from "../../api/NotificationApi";
+import {getAppToken} from "../../configuration/firebase";
 import {Button, ListItemIcon, Menu, MenuItem} from "@mui/material";
-import ErrorPopUp from "./ErrorPopUp";
+import ErrorPopup from "../error/ErrorPopup";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import Settings from '@mui/icons-material/Settings';
 import Logout from '@mui/icons-material/Logout';
@@ -9,8 +9,8 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import {Link, useNavigate} from "react-router-dom";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {logout, selectLoggedInUserData, selectUsername} from "../slices/LoggedInUserSlice";
-import styles from "../css/Navbar.module.sass"
+import {logout, selectLoggedInUserData, selectUsername} from "../../slices/LoggedInUserSlice";
+import styles from "../../css/Navbar.module.sass"
 
 export default function Navbar() {
     const [
@@ -36,7 +36,7 @@ export default function Navbar() {
 
     return (
         <div className={styles.mainDiv}>
-            { isError && <ErrorPopUp error={error} /> }
+            { isError && <ErrorPopup error={error} /> }
             <h2>Project Overview</h2>
             <Link to={"projects"}>Projects</Link>
             <Link to={"project/plans"}>Project Plans</Link>

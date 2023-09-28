@@ -1,15 +1,15 @@
 import {createBrowserRouter} from "react-router-dom";
 import App from "../components/App";
-import ErrorPage from "../components/ErrorPage";
-import LoginPage from "../components/LoginPage";
-import LandingPage from "../components/LandingPage";
-import ProjectsPage from "../components/ProjectsPage";
-import PasswordRecoveryPage from "../components/PasswordRecoveryPage";
-import ProjectPlansPage from "../components/ProjectPlansPage";
-import UserSettingsPage from "../components/UserSettingsPage";
-import ChangeUsernameForm from "../components/ChangeUsernameForm";
-import ChangePasswordForm from "../components/ChangePasswordForm";
-import ChangeEmailForm from "../components/ChangeEmailForm";
+import ErrorPage from "../components/error/ErrorPage";
+import LoginPage from "../components/loginRelated/LoginPage";
+import LandingPage from "../components/main/LandingPage";
+import ProjectsPage from "../components/main/ProjectsPage";
+import PasswordRecoveryPage from "../components/loginRelated/PasswordRecoveryPage";
+import ProjectPlansPage from "../components/main/ProjectPlansPage";
+import UserSettingsPage from "../components/userSetting/UserSettingsPage";
+import ChangeUsernameForm from "../components/userSetting/ChangeUsernameForm";
+import ChangePasswordForm from "../components/userSetting/ChangePasswordForm";
+import ChangeEmailForm from "../components/userSetting/ChangeEmailForm";
 
 export const router = createBrowserRouter([
     {

@@ -1,9 +1,9 @@
 import {Button, CircularProgress, TextField} from "@mui/material";
-import {useUserCreateMutation} from "../api/CreateUserApi";
-import ErrorPopUp from "./ErrorPopUp";
+import {useUserCreateMutation} from "../../api/CreateUserApi";
+import ErrorPopup from "../error/ErrorPopup";
 import {useForm} from "react-hook-form";
-import CreateUserModel from "../objects/CreateUserModel";
-import styles from "../css/CreateUser.module.sass"
+import CreateUserModel from "../../objects/CreateUserModel";
+import styles from "../../css/CreateUser.module.sass"
 
 interface CreateUserProps {
     setCreateUser: any
@@ -30,7 +30,7 @@ export default function CreateUserComponent(props: CreateUserProps) {
 
     return (
         <div className={styles.formDiv}>
-            { isError && <ErrorPopUp error={error} /> }
+            { isError && <ErrorPopup error={error} /> }
             <form className={styles.forms} onSubmit={ handleSubmit((data) => {
                 createUser(data as CreateUserModel)
             }) }>

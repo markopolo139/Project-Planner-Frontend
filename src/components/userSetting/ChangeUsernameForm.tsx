@@ -1,10 +1,10 @@
 import {useDispatch} from "react-redux";
 import React, {useState} from "react";
-import ErrorPopUp from "./ErrorPopUp";
-import {useChangeUsernameMutation} from "../api/UserApi";
+import ErrorPopup from "../error/ErrorPopup";
+import {useChangeUsernameMutation} from "../../api/UserApi";
 import {Button, TextField} from "@mui/material";
-import {setLoggedInUsername} from "../slices/LoggedInUserSlice";
-import styles from "../css/SettingsForm.module.sass"
+import {setLoggedInUsername} from "../../slices/LoggedInUserSlice";
+import styles from "../../css/SettingsForm.module.sass"
 
 
 export default function ChangeUsernameForm() {
@@ -17,7 +17,7 @@ export default function ChangeUsernameForm() {
 
     return (
         <div className={styles.formDiv}>
-            { error && <ErrorPopUp error={error} /> }
+            { error && <ErrorPopup error={error} /> }
             <form className={styles.forms} onSubmit={e => {
                 e.preventDefault()
                 setChanged(false)

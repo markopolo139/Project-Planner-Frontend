@@ -1,9 +1,9 @@
 import {Alert, Button, CircularProgress, TextField} from "@mui/material";
 import React, {useState} from "react";
-import useQuery from "../configuration/QueryHook";
-import {useChangePasswordMutation, useSendEmailMutation} from "../api/RecoveryPasswordApi";
-import ErrorPopUp from "./ErrorPopUp";
-import styles from "../css/PasswordRecovery.module.sass"
+import useQuery from "../../configuration/QueryHook";
+import {useChangePasswordMutation, useSendEmailMutation} from "../../api/RecoveryPasswordApi";
+import ErrorPopup from "../error/ErrorPopup";
+import styles from "../../css/PasswordRecovery.module.sass"
 
 interface PasswordRecoveryProps {
     setPasswordRecovery: any
@@ -36,7 +36,7 @@ export default function PasswordRecoveryPage(props: PasswordRecoveryProps) {
         return (
             <div>
                 <header className={styles.header}>Project Overview</header>
-                { isPasswordError && <ErrorPopUp error={changePasswordError}/> }
+                { isPasswordError && <ErrorPopup error={changePasswordError}/> }
                 { isFormValid || <Alert severity="error">Password does not match</Alert> }
                 <div className={styles.passwordDiv}>
                     <form className={styles.forms} onSubmit={e => {
@@ -69,7 +69,7 @@ export default function PasswordRecoveryPage(props: PasswordRecoveryProps) {
 
     return (
         <div className={styles.formDiv}>
-            { isEmailError && <ErrorPopUp error={emailError} /> }
+            { isEmailError && <ErrorPopup error={emailError} /> }
             <form className={styles.forms} onSubmit={e => {
                 e.preventDefault()
                 sendEmail(email)
