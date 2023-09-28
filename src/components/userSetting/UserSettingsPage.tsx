@@ -14,6 +14,7 @@ export default function UserSettingsPage() {
     const [isDelete, setDelete] = useState(false)
     const [open, setOpen] = useState(false);
     const [error, setError] = useState<any>(null);
+    const [active, setActive] = useState(0);
     const dispatch = useDispatch()
 
     function handleDeleteConfirmClick(_: any) {
@@ -27,17 +28,21 @@ export default function UserSettingsPage() {
             { error && <ErrorPopup error={error} /> }
             <div className={styles.navbar}>
                 <h2>Settings</h2>
-                <Link onClick={(e) => {
+                <Link className={active === 1 ? styles.active : ''} onClick={(e) => {
                     setDelete(false)
+                    setActive(1)
                 }} to={"username"}>Change Username</Link>
-                <Link onClick={(e) => {
+                <Link className={active === 2 ? styles.active : ''} onClick={(e) => {
                     setDelete(false)
+                    setActive(2)
                 }} to={"password"}>Change Password</Link>
-                <Link onClick={(e) => {
+                <Link className={active === 3 ? styles.active : ''} onClick={(e) => {
                     setDelete(false)
+                    setActive(3)
                 }} to={"email"}>Change Email</Link>
-                <span onClick={(e) => {
+                <span className={active === 4 ? styles.active : ''} onClick={(e) => {
                     setDelete(true)
+                    setActive(4)
                 }}>Delete Username</span>
             </div>
             <div className={styles.content}>
