@@ -5,6 +5,7 @@ import {createUserApi} from "../api/CreateUserApi";
 import {notificationApi} from "../api/NotificationApi";
 import loggedInUserReducer from "../slices/LoggedInUserSlice";
 import {userApi} from "../api/UserApi";
+import {projectApi} from "../api/ProjectApi";
 
 export const store = configureStore({
     reducer: {
@@ -13,11 +14,13 @@ export const store = configureStore({
         [recoveryPasswordApi.reducerPath]: recoveryPasswordApi.reducer,
         [createUserApi.reducerPath]: createUserApi.reducer,
         [notificationApi.reducerPath]: notificationApi.reducer,
-        [userApi.reducerPath]: userApi.reducer
+        [userApi.reducerPath]: userApi.reducer,
+        [projectApi.reducerPath]: projectApi.reducer
     },
     middleware: getDefaultMiddleware =>
         getDefaultMiddleware().concat(authApi.middleware).concat(recoveryPasswordApi.middleware)
             .concat(createUserApi.middleware).concat(notificationApi.middleware).concat(userApi.middleware)
+            .concat(projectApi.middleware)
 })
 
 export type RootState = ReturnType<typeof store.getState>
