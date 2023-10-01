@@ -7,7 +7,7 @@ interface LoggedInUserState {
     email: string
 }
 
-const initialValue: LoggedInUserState = {
+const initialState: LoggedInUserState = {
     jwtToken: "",
     username: "",
     email: ""
@@ -15,7 +15,7 @@ const initialValue: LoggedInUserState = {
 
 export const loggedInUserSlice = createSlice({
     name: "loggedInUser",
-    initialState: initialValue,
+    initialState: initialState,
     reducers: {
         setJwtToken: (state, action: PayloadAction<string>) => {
             state.jwtToken = action.payload
@@ -35,7 +35,8 @@ export const loggedInUserSlice = createSlice({
 })
 
 export const {
-    setJwtToken, setLoggedInUsername, logout, setLoggedInEmail
+    setJwtToken, setLoggedInUsername,
+    logout, setLoggedInEmail
 } = loggedInUserSlice.actions
 export const selectJwtToken = (state: RootState) => state.loggedInUser.jwtToken
 export const selectUsername = (state: RootState) => state.loggedInUser.username
