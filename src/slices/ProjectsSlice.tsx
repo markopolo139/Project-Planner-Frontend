@@ -40,5 +40,5 @@ export const {
     addProject, setNewProjects,
     updateProject
 } = projectsSlice.actions
-export const selectProjects = (state: RootState) => state.projects
+export const selectProjects = (state: RootState) => state.projects.projects
 export default projectsSlice.reducer
