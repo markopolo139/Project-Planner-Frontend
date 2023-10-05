@@ -25,10 +25,10 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
     const [getPublicProjects, { error: errorPublic }] = useLazyGetPublicReposQuery()
     const [getPrivateProjects, { error: errorPrivate }] = useLazyGetPrivateReposQuery()
     const [createProjects, { error: createProjectsError }] = useCreateProjectsMutation()
-    const projectsIds = useSelector(selectProjects).map(it => it.projectId)
+    const projectsIds = useSelector(selectProjects).map(it => it.title)
 
     function filterToOnlyNewProjects(projects: Project[]): Project[] {
-        return projects.filter(it => !projectsIds.includes(it.projectId))
+        return projects.filter(it => !projectsIds.includes(it.title))
     }
 
     function apiCall() {

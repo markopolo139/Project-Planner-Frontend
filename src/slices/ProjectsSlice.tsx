@@ -33,8 +33,8 @@ export const projectsSlice = createSlice({
             )
         },
         addOnlyNewProjects: (state, action: PayloadAction<Array<Project>>) => {
-            let existingId = state.projects.map(it => it.projectId)
-            let newProjects = action.payload.filter(it => !existingId.includes(it.projectId))
+            let existingId = state.projects.map(it => it.title)
+            let newProjects = action.payload.filter(it => !existingId.includes(it.title))
             state.projects.push(...newProjects)
         }
     }
