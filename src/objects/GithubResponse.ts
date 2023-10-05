@@ -17,7 +17,7 @@ export function mapToProject(response: GithubResponse): Project {
         githubLink: response.html_url,
         goals: [],
         isCurrent: false,
-        language: "",
+        language: "place_holder",
         projectId: 0,
         projectStatus: "WORKING_ON",
         technologies: [],

@@ -3,14 +3,20 @@ import Popup from "reactjs-popup";
 import CloseIcon from "@mui/icons-material/Close";
 import {Button, TextField} from "@mui/material";
 import {setLoggedInUsername} from "../../../slices/LoggedInUserSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {useLazyGetPrivateReposQuery, useLazyGetPublicReposQuery} from "../../../api/GithubApi";
 import ErrorPage from "../../error/ErrorPage";
 import ErrorPopup from "../../error/ErrorPopup";
 import {mapToProject} from "../../../objects/GithubResponse";
-import {addOnlyNewProjects} from "../../../slices/ProjectsSlice";
+import {addOnlyNewProjects, selectProjects} from "../../../slices/ProjectsSlice";
+import {useCreateProjectsMutation} from "../../../api/ProjectApi";
+import Project from "../../../objects/Project";
 
-export default function ImportGithubComponent() {
+interface ImportGithubProps {
+    setImportGithub: any
+}
+
+export default function ImportGithubComponent(props: ImportGithubProps) {
     const [open, setOpen] = useState(true);
     const [isImport, setImport] = useState(false);
     const [isUsernameImport, setUsernameImport] = useState(true);
@@ -18,27 +24,50 @@ export default function ImportGithubComponent() {
     const dispatch = useDispatch()
     const [getPublicProjects, { error: errorPublic }] = useLazyGetPublicReposQuery()
     const [getPrivateProjects, { error: errorPrivate }] = useLazyGetPrivateReposQuery()
+    const [createProjects, { error: createProjectsError }] = useCreateProjectsMutation()
+    const projectsIds = useSelector(selectProjects).map(it => it.projectId)
+
+    function filterToOnlyNewProjects(projects: Project[]): Project[] {
+        return projects.filter(it => !projectsIds.includes(it.projectId))
+    }
 
     function apiCall() {
         if (isUsernameImport) {
             getPublicProjects(text).unwrap().then(
-                data => dispatch(addOnlyNewProjects(data.map(it => mapToProject(it))))
-            )
+                data => {
+                    let projects = data.map(it => mapToProject(it))
+                    createProjects(filterToOnlyNewProjects(projects)).unwrap().then( _ => {
+                        dispatch(addOnlyNewProjects(projects))
+                    }).catch(e => console.log(e))
+                }
+            ).catch(e => console.log(e))
         }
         else {
             getPrivateProjects(text).unwrap().then(
-                data => dispatch(addOnlyNewProjects(data.map(it => mapToProject(it))))
-            )
+                data => {
+                    let projects = data.map(it => mapToProject(it))
+                    createProjects(filterToOnlyNewProjects(projects)).unwrap().then( _ => {
+                        dispatch(addOnlyNewProjects(projects))
+                    }).catch(e => console.log(e))
+                }
+            ).catch(e => console.log(e))
         }
+
+        setOpen(false)
+        props.setImportGithub(false)
     }
 
     return (
         <Popup open={open} closeOnDocumentClick>
             { errorPublic && <ErrorPopup error={errorPublic} /> }
             { errorPrivate && <ErrorPopup error={errorPrivate} /> }
+            { createProjectsError && <ErrorPopup error={createProjectsError} /> }
             <div className="popup-header">
                 <h2>Import projects</h2>
-                <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
+                <CloseIcon className="popup-close" onClick={() => {
+                    setOpen(false)
+                    props.setImportGithub(false)
+                }}></CloseIcon>
             </div>
             { isImport ||
                 <div className="popup-text">
@@ -49,7 +78,7 @@ export default function ImportGithubComponent() {
                     }}>Import private(via github token) projects</Button>
                     <Button className="Button" variant="outlined" onClick={ e => {
                         setImport(true)
-                        setUsernameImport(false)
+                        setUsernameImport(true)
                     }}>Import public(via github username) projects</Button>
                 </div>
             }
@@ -59,7 +88,6 @@ export default function ImportGithubComponent() {
                     setImport(false)
                     apiCall()
                 }}>
-                    <h2></h2>
                     <TextField
                         className="TextField" label={isUsernameImport ? "Type username" : "Type token"} variant="outlined"
                         onChange={ e => { setText(e.target.value.trim()) } }
