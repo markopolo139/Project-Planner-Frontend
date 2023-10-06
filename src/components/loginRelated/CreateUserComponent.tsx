@@ -51,8 +51,8 @@ export default function CreateUserComponent(props: CreateUserProps) {
                         props.setCreateUser(false)
                     }}>Return</Button>
                 </div>
+                { isLoading && <CircularProgress /> }
             </form>
-            { isLoading && <CircularProgress /> }
         </div>
     )
 }
