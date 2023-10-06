@@ -6,7 +6,7 @@ export default interface Project {
     title: string
     description: string
     language: string
-    deadline: Date
+    deadline: Date | null
     dateOfStart: Date
     isCurrent: boolean
     projectStatus: ProjectStatus

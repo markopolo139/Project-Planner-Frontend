@@ -31,6 +31,11 @@ export const projectsSlice = createSlice({
             state.projects.map(it =>
                 it.projectId === action.payload.id ? {...action.payload.updatedProject } : { ...it }
             )
+        },
+        addOnlyNewProjects: (state, action: PayloadAction<Array<Project>>) => {
+            let existingId = state.projects.map(it => it.projectId)
+            let newProjects = action.payload.filter(it => !existingId.includes(it.projectId))
+            state.projects.push(...newProjects)
         }
     }
 })
@@ -38,7 +43,7 @@ export const projectsSlice = createSlice({
 export const {
     addProjects, deleteAllProjects,
     addProject, setNewProjects,
-    updateProject
+    updateProject, addOnlyNewProjects
 } = projectsSlice.actions
 export const selectProjects = (state: RootState) => state.projects.projects
 export default projectsSlice.reducer
