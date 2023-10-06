@@ -5,11 +5,13 @@ import {selectProjects} from "../../../slices/ProjectsSlice";
 import {Button} from "@mui/material";
 import {useState} from "react";
 import ImportGithubComponent from "./ImportGithubComponent";
+import ProjectFilterComponent from "./ProjectFilterComponent";
 
 export default function AllProjectsPage() {
     const [importGithub, setImportGithub] = useState(false)
+    const [filter, setFilter] = useState(false)
     const projects = useSelector(selectProjects)
-
+    //TODO: add css to all components in this folder
     return (
         <div>
             { importGithub && <ImportGithubComponent setImportGithub={setImportGithub} /> }
@@ -18,11 +20,15 @@ export default function AllProjectsPage() {
                 <Button className="Button" variant="outlined" onClick={ e => {
                     setImportGithub(!importGithub)
                 }}>{importGithub && "Close"} Import projects from github</Button>
+                <Button className="Button" variant="outlined" onClick={ e => {
+                    setFilter(!filter)
+                }}>{filter && "Close"} Filter</Button>
                 <Link to="projects/create">Create Project</Link>
             </div>
+            { filter && <div><ProjectFilterComponent/></div> }
             <div>
                 {projects.map( it =>
-                    <div className={it.projectStatus.toLowerCase().replace("_", "-") + "-project"} key={ it.title }>{it.title}</div>
+                    <Link to={ "projects/" + it.title } className={it.projectStatus.toLowerCase().replace("_", "-") + "-project"} key={ it.title }>{it.title}</Link>
                 )}
             </div>
         </div>

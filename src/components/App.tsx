@@ -32,7 +32,7 @@ function App() {
                 {!isPasswordRecovery && <LoginPage authenticate={authenticate} setPasswordRecovery={setPasswordRecovery}/>}
                 {isPasswordRecovery && <PasswordRecoveryPage setPasswordRecovery={setPasswordRecovery}/>}
             </div> }
-            { isJwtSet && <Navigate to="/home" replace={true} /> }
+            { isJwtSet && <Navigate to="/home/projects" replace={true} /> }
         </div>
     );
 }
