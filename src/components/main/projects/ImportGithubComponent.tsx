@@ -8,7 +8,7 @@ import {useLazyGetPrivateReposQuery, useLazyGetPublicReposQuery} from "../../../
 import ErrorPage from "../../error/ErrorPage";
 import ErrorPopup from "../../error/ErrorPopup";
 import {mapToProject} from "../../../objects/GithubResponse";
-import {addOnlyNewProjects, selectProjects} from "../../../slices/ProjectsSlice";
+import {addOnlyNewProjects, addProjects, selectProjects} from "../../../slices/ProjectsSlice";
 import {useCreateProjectsMutation} from "../../../api/ProjectApi";
 import Project from "../../../objects/Project";
 
@@ -36,8 +36,8 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
             getPublicProjects(text).unwrap().then(
                 data => {
                     let projects = data.map(it => mapToProject(it))
-                    createProjects(filterToOnlyNewProjects(projects)).unwrap().then( _ => {
-                        dispatch(addOnlyNewProjects(projects))
+                    createProjects(filterToOnlyNewProjects(projects)).unwrap().then( data => {
+                        dispatch(addProjects(data))
                     }).catch(e => console.log(e))
                 }
             ).catch(e => console.log(e))
@@ -46,8 +46,8 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
             getPrivateProjects(text).unwrap().then(
                 data => {
                     let projects = data.map(it => mapToProject(it))
-                    createProjects(filterToOnlyNewProjects(projects)).unwrap().then( _ => {
-                        dispatch(addOnlyNewProjects(projects))
+                    createProjects(filterToOnlyNewProjects(projects)).unwrap().then( data => {
+                        dispatch(addProjects(data))
                     }).catch(e => console.log(e))
                 }
             ).catch(e => console.log(e))

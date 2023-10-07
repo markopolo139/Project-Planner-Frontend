@@ -19,7 +19,7 @@ export const projectApi = createApi({
     }),
     tagTypes: ['Projects'],
     endpoints: (builder) => ({
-        createProject: builder.mutation<void, Project>({
+        createProject: builder.mutation<Project, Project>({
             query: (model: Project) => ({
                 url: "create",
                 method: "POST",
@@ -30,7 +30,7 @@ export const projectApi = createApi({
             }),
             invalidatesTags: ['Projects']
         }),
-        createProjects: builder.mutation<void, Array<Project>>({
+        createProjects: builder.mutation<Array<Project>, Array<Project>>({
             query: (model: Array<Project>) => ({
                 url: "create/list",
                 method: "POST",
@@ -41,7 +41,7 @@ export const projectApi = createApi({
             }),
             invalidatesTags: ['Projects']
         }),
-        updateProject: builder.mutation<void, Project>({
+        updateProject: builder.mutation<Project, Project>({
             query: (model: Project) => ({
                 url: "update",
                 method: "PUT",

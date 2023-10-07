@@ -23,12 +23,12 @@ export default function AllProjectsPage() {
                 <Button className="Button" variant="outlined" onClick={ e => {
                     setFilter(!filter)
                 }}>{filter && "Close"} Filter</Button>
-                <Link to="projects/create">Create Project</Link>
+                <Link to="create">Create Project</Link>
             </div>
             { filter && <div><ProjectFilterComponent/></div> }
             <div>
                 {projects.map( it =>
-                    <Link to={ "projects/" + it.title } className={it.projectStatus.toLowerCase().replace("_", "-") + "-project"} key={ it.title }>{it.title}</Link>
+                    <Link to={ it.title } className={it.projectStatus.toLowerCase().replace("_", "-") + "-project"} key={ it.title }>{it.title}</Link>
                 )}
             </div>
         </div>
