@@ -1,6 +1,5 @@
 import Project from "../objects/Project";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {UpdateProjectModel} from "../objects/UpdateProjectModel";
 import {RootState} from "../configuration/Strore";
 
 interface ProjectsState {
@@ -27,9 +26,9 @@ export const projectsSlice = createSlice({
         setNewProjects: (state, action: PayloadAction<Array<Project>>) => {
             state.projects = action.payload
         },
-        updateProject: (state, action: PayloadAction<UpdateProjectModel>) => {
+        updateProject: (state, action: PayloadAction<Project>) => {
             state.projects.map(it =>
-                it.projectId === action.payload.id ? {...action.payload.updatedProject } : { ...it }
+                it.projectId === action.payload.projectId ? {...action.payload } : { ...it }
             )
         },
         addOnlyNewProjects: (state, action: PayloadAction<Array<Project>>) => {

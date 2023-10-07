@@ -17,7 +17,10 @@ export default function AllProjectsPage() {
     if (createProject)
         return (
             <div>
-                <SaveProjectPage projectId={0} dateOfStart={new Date()} isCurrent={false} projectStatus="NOT_STARTED" setCreateProject={setCreateProject} />
+                <SaveProjectPage
+                    isUpdate={false} projectId={0} dateOfStart={new Date()} isCurrent={false}
+                    projectStatus="NOT_STARTED" setCreateProject={setCreateProject}
+                />
             </div>
         )
 
