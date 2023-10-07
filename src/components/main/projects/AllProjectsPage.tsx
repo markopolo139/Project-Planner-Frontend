@@ -6,11 +6,21 @@ import {Button} from "@mui/material";
 import {useState} from "react";
 import ImportGithubComponent from "./ImportGithubComponent";
 import ProjectFilterComponent from "./ProjectFilterComponent";
+import SaveProjectPage from "./SaveProjectPage";
 
 export default function AllProjectsPage() {
     const [importGithub, setImportGithub] = useState(false)
     const [filter, setFilter] = useState(false)
+    const [createProject, setCreateProject] = useState(false)
     const projects = useSelector(selectProjects)
+
+    if (createProject)
+        return (
+            <div>
+                <SaveProjectPage projectId={0} dateOfStart={new Date()} isCurrent={false} projectStatus="NOT_STARTED" setCreateProject={setCreateProject} />
+            </div>
+        )
+
     //TODO: add css to all components in this folder
     return (
         <div>
@@ -23,7 +33,9 @@ export default function AllProjectsPage() {
                 <Button className="Button" variant="outlined" onClick={ e => {
                     setFilter(!filter)
                 }}>{filter && "Close"} Filter</Button>
-                <Link to="create">Create Project</Link>
+                <Button className="Button" variant="outlined" onClick={ e => {
+                    setCreateProject(true)
+                }}>Create Project</Button>
             </div>
             { filter && <div><ProjectFilterComponent/></div> }
             <div>
