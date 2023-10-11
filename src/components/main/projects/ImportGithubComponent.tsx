@@ -92,7 +92,7 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
                         className="TextField" label={isUsernameImport ? "Type username" : "Type token"} variant="outlined"
                         onChange={ e => { setText(e.target.value.trim()) } }
                     />
-                    <Button className="Button" variant="outlined" type="submit">Import Project</Button>
+                    <Button className="Button" variant="outlined" type="submit">Import projects</Button>
                 </form>
             }
         </Popup>
