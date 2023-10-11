@@ -6,7 +6,7 @@ import {Button} from "@mui/material";
 import {useState} from "react";
 import ImportGithubComponent from "./ImportGithubComponent";
 import ProjectFilterComponent from "./ProjectFilterComponent";
-import SaveProjectPage from "./SaveProjectPage";
+import CreateProjectPage from "./CreateProjectPage";
 
 export default function AllProjectsPage() {
     const [importGithub, setImportGithub] = useState(false)
@@ -17,8 +17,8 @@ export default function AllProjectsPage() {
     if (createProject)
         return (
             <div>
-                <SaveProjectPage
-                    isUpdate={false} projectId={0} dateOfStart={new Date()} isCurrent={false}
+                <CreateProjectPage
+                    projectId={0} dateOfStart={new Date(new Date().setSeconds(0, 0))} isCurrent={false}
                     projectStatus="NOT_STARTED" setCreateProject={setCreateProject}
                 />
             </div>

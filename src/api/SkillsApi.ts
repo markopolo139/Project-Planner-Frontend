@@ -13,7 +13,7 @@ export const skillsApi = createApi({
     endpoints: (builder) => ({
         getSkills: builder.query<string[], string>({
             query: (value: string) => ({
-                url: `?q=${value}`,
+                url: `?q=${value}&count=50`,
                 method: "GET",
             })
         })
