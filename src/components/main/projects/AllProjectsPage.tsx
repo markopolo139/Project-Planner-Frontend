@@ -13,6 +13,7 @@ export default function AllProjectsPage() {
     const [filter, setFilter] = useState(false)
     const [createProject, setCreateProject] = useState(false)
     const projects = useSelector(selectProjects)
+    const dispatch = useDispatch()
 
     if (createProject)
         return (
@@ -40,7 +41,7 @@ export default function AllProjectsPage() {
                     setCreateProject(true)
                 }}>Create Project</Button>
             </div>
-            { filter && <div><ProjectFilterComponent/></div> }
+            { filter && <div><ProjectFilterComponent dispatch={dispatch}/></div> }
             <div>
                 {projects.map( it =>
                     <Link to={ it.title } className={it.projectStatus.toLowerCase().replace("_", "-") + "-project"} key={ it.title }>{it.title}</Link>
