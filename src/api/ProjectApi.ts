@@ -52,6 +52,13 @@ export const projectApi = createApi({
             }),
             invalidatesTags: ['Projects']
         }),
+        deleteProject: builder.mutation<void, number>({
+            query: (id) => ({
+                url: `delete?id=${id}`,
+                method: "DELETE"
+            }),
+            invalidatesTags: ['Projects']
+        }),
         filterProjects: builder.query<Array<Project>, Partial<ProjectFilterModel>>({
             query: (model: Partial<ProjectFilterModel>) => ({
                 url: "filter",
@@ -76,6 +83,7 @@ export const projectApi = createApi({
 
 export const {
     useCreateProjectMutation, useCreateProjectsMutation,
-    useUpdateProjectMutation, useLazyFilterProjectsQuery,
-    useGetProjectsQuery, useGetProjectByTitleQuery
+    useUpdateProjectMutation, useDeleteProjectMutation,
+    useLazyFilterProjectsQuery, useGetProjectsQuery,
+    useGetProjectByTitleQuery
 } = projectApi

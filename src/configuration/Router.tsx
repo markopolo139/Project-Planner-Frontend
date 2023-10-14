@@ -3,13 +3,19 @@ import App from "../components/App";
 import ErrorPage from "../components/error/ErrorPage";
 import LoginPage from "../components/loginRelated/LoginPage";
 import LandingPage from "../components/main/LandingPage";
-import ProjectsPage from "../components/main/ProjectsPage";
+import AllProjectsPage from "../components/main/projects/AllProjectsPage";
 import PasswordRecoveryPage from "../components/loginRelated/PasswordRecoveryPage";
-import ProjectPlansPage from "../components/main/ProjectPlansPage";
+import AllProjectPlansPage from "../components/main/projectsPlans/AllProjectPlansPage";
 import UserSettingsPage from "../components/userSetting/UserSettingsPage";
 import ChangeUsernameForm from "../components/userSetting/ChangeUsernameForm";
 import ChangePasswordForm from "../components/userSetting/ChangePasswordForm";
 import ChangeEmailForm from "../components/userSetting/ChangeEmailForm";
+import ProjectPage from "../components/main/projects/ProjectPage";
+import ProjectPlanPage from "../components/main/projectsPlans/ProjectPlanPage";
+import {projectsLoader} from "./dataLoader/ProjectsLoader";
+import CreateProjectPage from "../components/main/projects/CreateProjectPage";
+import CreatePlanPage from "../components/main/projectsPlans/CreatePlanPage";
+import {projectLoader} from "./dataLoader/ProjectLoader";
 
 export const router = createBrowserRouter([
     {
@@ -29,16 +35,26 @@ export const router = createBrowserRouter([
                 errorElement: <ErrorPage />,
                 children: [
                     {
-                        index: true,
-                        element: <ProjectsPage />
+                        path: "/home/projects",
+                        element: <AllProjectsPage />,
+                        loader: projectsLoader
                     },
                     {
-                        path: "/home/projects",
-                        element: <ProjectsPage />
+                        path: "/home/projects/:projectTitle",
+                        element: <ProjectPage />,
+                        loader: projectLoader
                     },
                     {
                         path: "/home/project/plans",
-                        element: <ProjectPlansPage />
+                        element: <AllProjectPlansPage />
+                    },
+                    {
+                        path: "/home/project/plans/create",
+                        element: <CreatePlanPage />
+                    },
+                    {
+                        path: "/home/project/plans/:projectPlanId",
+                        element: <ProjectPlanPage />
                     },
                     {
                         path: "/home/user/settings",

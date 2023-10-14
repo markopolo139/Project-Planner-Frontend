@@ -34,9 +34,9 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm();
 
-    const [technologies, setTechnologies] = useState<string[]>([])
-    const [features, setFeatures] = useState<string[]>([])
-    const [goals, setGoals] = useState<string[]>([])
+    const [technologies, setTechnologies] = useState<string[]>(props.technologies ?? [])
+    const [features, setFeatures] = useState<string[]>(props.features ?? [])
+    const [goals, setGoals] = useState<string[]>(props.goals ?? [])
     const [technology, setTechnology] = useState<string>("")
     const [feature, setFeature] = useState<string>("")
     const [goal, setGoal] = useState<string>("")
@@ -59,19 +59,16 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
         <div>
             { isError && <ErrorPopup error={error} /> }
             <form onSubmit={ handleSubmit((data) => {
-                console.log(data)
+                let project = data as Project
+                project.technologies = technologies
+                project.features = features
+                project.goals = goals
                 updateProjectApi(data as Project)
             }) }>
                 <input hidden value={props.projectId} type="number" {...register("projectId")}></input>
+                <input hidden value={props.githubLink} type="text" {...register("githubLink")}/>
+                <input hidden value={props.title} type="text"{...register("title")}/>
                 <h2>Update project:</h2>
-                <TextField
-                    defaultValue={props.githubLink} className="TextField" label="githubLink" variant="outlined"
-                    type="text" {...register("githubLink")}
-                />
-                <TextField
-                    defaultValue={props.title} className="TextField" label="title" variant="outlined" type="text"
-                    {...register("title")}
-                />
                 <TextField
                     defaultValue={props.description} className="TextField" label="description" variant="outlined"
                     type="text" {...register("description")}
@@ -83,14 +80,14 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                 <div>
                     <label>deadline</label>
                     <TextField
-                        defaultValue={props.deadline?.toISOString().split("Z")[0]} className="TextField"
+                        defaultValue={props.deadline} className="TextField"
                         variant="outlined" type="datetime-local" {...register("deadline")}
                     />
                 </div>
                 <div>
                     <label>dateOfStart</label>
                     <TextField
-                        defaultValue={props.dateOfStart?.toISOString().split("Z")[0]} className="TextField"
+                        defaultValue={props.dateOfStart} className="TextField"
                         variant="outlined" type="datetime-local" {...register("dateOfStart")}
                     />
                 </div>
