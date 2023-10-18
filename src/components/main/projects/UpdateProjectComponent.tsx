@@ -30,7 +30,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
         updateProjectApi,
         { data, error, isError, isLoading, isSuccess }
     ] = useUpdateProjectMutation()
-    const [ getFeatures, { data: featuresData }] = useLazyGetSkillsQuery()
+    const [ getTechnologies, { data: technologyData }] = useLazyGetSkillsQuery()
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm();
 
@@ -113,8 +113,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                 <div>
                     <div>
                         Goals:
-                        <TextField className="TextField" label="goal" variant="outlined"
-                                   onChange={e => setGoal(e.target.value)} />
+                        <TextField className="TextField" label="goal" variant="outlined" onChange={e => setGoal(e.target.value)} />
                         <Button className="Button" variant="outlined" onClick={
                             e => {
                                 setGoals([...goals, goal])
@@ -136,46 +135,8 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                     </div>
 
                     <div>
-                        Technologies:
-                        <TextField className="TextField" label="technology" variant="outlined"
-                                   onChange={e => { setTechnology(e.target.value) }} />
-                        <Button className="Button" variant="outlined" onClick={
-                            e => {
-                                setTechnologies([...technologies, technology])
-                                setTechnology("")
-                            }
-                        }>Add Technology</Button>
-                        { (technologies.length !== 0)
-                            && <Stack spacing={1}>
-                                {technologies.map(it =>
-                                    <div key={it}>
-                                        <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
-                                            e => {
-                                                setTechnologies(technologies.filter(technology => technology !== it))
-                                            }
-                                        }>Delete</Button>
-                                    </div>
-                                )}
-                            </Stack>
-                        }
-                    </div>
-
-                    <div>
                         Features:
-                        <Autocomplete
-                            disablePortal
-                            options={featuresData ? featuresData : []}
-                            sx={{ width: 200 }}
-                            filterOptions={(x) => x}
-                            renderInput={(params) => <TextField {...params} label="Features" />}
-                            onInputChange={(e, value) => { getFeatures(value) }}
-                            onChange={ (e, value) => {
-                                if (value !== null) {
-                                    setFeature(value)
-                                }
-                            }}
-                        />
+                        <TextField className="TextField" label="feature" variant="outlined" onChange={e => { setFeature(e.target.value) }} />
                         <Button className="Button" variant="outlined" onClick={
                             e => {
                                 setFeatures([...features, feature])
@@ -190,6 +151,43 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                                         <Button className="Button-Stack" variant="outlined" onClick={
                                             e => {
                                                 setFeatures(features.filter(feature => feature !== it))
+                                            }
+                                        }>Delete</Button>
+                                    </div>
+                                )}
+                            </Stack>
+                        }
+                    </div>
+
+                    <div>
+                        Technologies:
+                        <Autocomplete
+                            disablePortal
+                            options={technologyData ? technologyData : []}
+                            sx={{ width: 200 }}
+                            filterOptions={(x) => x}
+                            renderInput={(params) => <TextField {...params} label="Features" />}
+                            onInputChange={(e, value) => { getTechnologies(value) }}
+                            onChange={ (e, value) => {
+                                if (value !== null) {
+                                    setTechnology(value)
+                                }
+                            }}
+                        />
+                        <Button className="Button" variant="outlined" onClick={
+                            e => {
+                                setTechnologies([...technologies, technology])
+                                setTechnology("")
+                            }
+                        }>Add Technology</Button>
+                        { (technologies.length !== 0)
+                            && <Stack spacing={1}>
+                                {technologies.map(it =>
+                                    <div key={it}>
+                                        <span>{it}</span>
+                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                            e => {
+                                                setTechnologies(technologies.filter(technology => technology !== it))
                                             }
                                         }>Delete</Button>
                                     </div>
