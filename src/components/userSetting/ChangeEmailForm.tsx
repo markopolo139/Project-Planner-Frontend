@@ -4,7 +4,7 @@ import ErrorPopup from "../error/ErrorPopup";
 import {useChangeEmailMutation} from "../../api/UserApi";
 import {setLoggedInEmail, setLoggedInUsername} from "../../slices/LoggedInUserSlice";
 import {Button, TextField} from "@mui/material";
-import styles from "../../css/SettingsForm.module.sass"
+import styles from "../../css/userSettings/SettingsForm.module.sass"
 
 export default function ChangeEmailForm() {
     const [changeEmail] = useChangeEmailMutation()

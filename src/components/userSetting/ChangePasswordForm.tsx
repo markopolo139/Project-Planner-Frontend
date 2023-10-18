@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import ErrorPopup from "../error/ErrorPopup";
 import {Alert, Button, TextField} from "@mui/material";
 import {useChangePasswordMutation} from "../../api/UserApi";
-import styles from "../../css/SettingsForm.module.sass"
+import styles from "../../css/userSettings/SettingsForm.module.sass"
 
 
 export default function ChangePasswordForm() {

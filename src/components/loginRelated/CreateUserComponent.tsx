@@ -3,7 +3,7 @@ import {useUserCreateMutation} from "../../api/CreateUserApi";
 import ErrorPopup from "../error/ErrorPopup";
 import {useForm} from "react-hook-form";
 import CreateUserModel from "../../objects/CreateUserModel";
-import styles from "../../css/CreateUser.module.sass"
+import styles from "../../css/loginRelated/CreateUser.module.sass"
 
 interface CreateUserProps {
     setCreateUser: any

@@ -4,7 +4,7 @@ import ErrorPopup from "../error/ErrorPopup";
 import {useChangeUsernameMutation} from "../../api/UserApi";
 import {Button, TextField} from "@mui/material";
 import {setLoggedInUsername} from "../../slices/LoggedInUserSlice";
-import styles from "../../css/SettingsForm.module.sass"
+import styles from "../../css/userSettings/SettingsForm.module.sass"
 
 
 export default function ChangeUsernameForm() {

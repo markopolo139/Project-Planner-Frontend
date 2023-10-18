@@ -10,7 +10,7 @@ import {Link, useNavigate} from "react-router-dom";
 import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logout, selectLoggedInUserData, selectUsername} from "../../slices/LoggedInUserSlice";
-import styles from "../../css/Navbar.module.sass"
+import styles from "../../css/main/Navbar.module.sass"
 
 export default function Navbar() {
     const [

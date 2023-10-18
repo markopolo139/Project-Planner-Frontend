@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {logout} from "../../slices/LoggedInUserSlice";
 import {useDeleteUserMutation} from "../../api/UserApi";
 import ErrorPopup from "../error/ErrorPopup";
-import styles from "../../css/UserSettings.module.sass"
+import styles from "../../css/userSettings/UserSettings.module.sass"
 
 export default function UserSettingsPage() {
     const [deleteUser] = useDeleteUserMutation()

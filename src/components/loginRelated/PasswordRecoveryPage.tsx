@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import useQuery from "../../configuration/QueryHook";
 import {useChangePasswordMutation, useSendEmailMutation} from "../../api/RecoveryPasswordApi";
 import ErrorPopup from "../error/ErrorPopup";
-import styles from "../../css/PasswordRecovery.module.sass"
+import styles from "../../css/loginRelated/PasswordRecovery.module.sass"
 
 interface PasswordRecoveryProps {
     setPasswordRecovery: any
