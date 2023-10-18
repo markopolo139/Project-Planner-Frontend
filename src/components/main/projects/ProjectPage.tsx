@@ -2,7 +2,8 @@ import {Link, Navigate, useLoaderData, useNavigate} from "react-router-dom";
 import Project from "../../../objects/Project";
 import {useEffect, useState} from "react";
 import UpdateProjectPage from "./UpdateProjectComponent";
-import {Button} from "@mui/material";
+import {Accordion, AccordionDetails, AccordionSummary, Button, Typography} from "@mui/material";
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from "@mui/icons-material/Close";
 import Popup from "reactjs-popup";
 import {useDeleteProjectMutation} from "../../../api/ProjectApi";
@@ -27,11 +28,10 @@ export default function ProjectPage() {
     if (isUpdate)
         return <UpdateProjectPage setUpdateProject={setUpdate} {...project} />
 
-    //TODO: show fileds of project, maybe add something from github like commits etc.,
     return (
         <div>
             { error && <ErrorPopup error={error} /> }
-            {project.githubLink}
+            <ProjectSummary project={project} />
             <Button className="Button" variant="outlined" onClick={ e => {
                 setUpdate(true)
             }}>Update Project</Button>
@@ -49,6 +49,54 @@ export default function ProjectPage() {
                     <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
                 </div>
             </Popup>
+        </div>
+    )
+}
+
+interface ProjectSummaryProps {
+    project: Project
+}
+
+function ProjectSummary(props: ProjectSummaryProps) {
+    let project = props.project
+    console.log(project.dateOfStart)
+    return (
+        <div>
+            <h2>{project.title}:{project.projectStatus.replace("_", " ")}</h2>
+            <p>Github link: {project.githubLink}</p>
+            <p>Used language: {project.language}</p>
+            <p>Description: {project.description}</p>
+            <p>Date of start: {new Date(project.dateOfStart).toLocaleDateString("pl-PL")}</p>
+            { project.deadline && <p>Date of start: {new Date(project.deadline).toLocaleDateString("pl-PL")}</p> }
+
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>Features</AccordionSummary>
+                <AccordionDetails>
+                    <Typography>
+                        <div>
+                            { project.features.map(it => <div>{it}</div>) }
+                        </div>
+                    </Typography>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>Goals</AccordionSummary>
+                <AccordionDetails>
+                    <div>
+                        { project.goals.map(it => <div>{it}</div>) }
+                    </div>
+                </AccordionDetails>
+            </Accordion>
+
+            <Accordion>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />}>Technology used</AccordionSummary>
+                <AccordionDetails>
+                    <div>
+                        { project.technologies.map(it => <div>{it}</div>) }
+                    </div>
+                </AccordionDetails>
+            </Accordion>
         </div>
     )
 }
