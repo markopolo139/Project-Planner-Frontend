@@ -1,0 +1,58 @@
+.body
+  display: flex
+  flex-direction: column
+  & h2
+    margin-left: 15px
+
+.nav_bar
+  display: flex
+  flex-direction: row
+
+.nav_button
+  margin-left: 15px
+  &:hover
+    border-color: #00ABE4
+    color: #FFFFFF
+    background-color: #00ABE4
+
+.projects
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+
+:global(.active-project)
+  background: linear-gradient(to right, #E9F1FA 0%, #E9F1FA 88%, blue 90%, blue 100%)
+  &:hover
+    background: linear-gradient(to right, #91C8E4 0%, #91C8E4 88%, blue 90%, blue 100%)
+
+:global(.break-project)
+  background: linear-gradient(to right, #E9F1FA 0%, #E9F1FA 88%, yellow 90%, yellow 100%)
+  &:hover
+    background: linear-gradient(to right, #91C8E4 0%, #91C8E4 88%, yellow 90%, yellow 100%)
+
+:global(.canceled-project)
+  background: linear-gradient(to right, #E9F1FA 0%, #E9F1FA 88%, red 90%, red 100%)
+  &:hover
+    background: linear-gradient(to right, #91C8E4 0%, #91C8E4 88%, red 90%, red 100%)
+
+:global(.working-on-project)
+  background: linear-gradient(to right, #E9F1FA 0%, #E9F1FA 88%, green 90%, green 100%)
+  &:hover
+    background: linear-gradient(to right, #91C8E4 0%, #91C8E4 88%, green 90%, green 100%)
+
+:global(.not-started-project)
+  background: linear-gradient(to right, #E9F1FA 0%, #E9F1FA 88%, gray 90%, gray 100%)
+  &:hover
+    background: linear-gradient(to right, #91C8E4 0%, #91C8E4 88%, gray 90%, gray 100%)
+
+.project
+  font-size: 1.2rem
+  display: flex
+  justify-content: center
+  align-items: center
+  text-decoration: none
+  color: black
+  width: 30%
+  height: 40px
+  margin: 15px
+  border: black 1px solid
