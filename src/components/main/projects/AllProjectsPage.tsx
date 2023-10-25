@@ -32,13 +32,13 @@ export default function AllProjectsPage() {
             { importGithub && <ImportGithubComponent setImportGithub={setImportGithub} /> }
             <h2>All Projects:</h2>
             <div className={styles.nav_bar}>
-                <Button className={styles.nav_button} variant="outlined" onClick={ e => {
+                <Button className="Button" variant="outlined" onClick={ e => {
                     setFilter(!filter)
                 }}>{filter && "Close"} Filter</Button>
-                <Button className={styles.nav_button} variant="outlined" onClick={ e => {
+                <Button className="Button" variant="outlined" onClick={ e => {
                     setImportGithub(!importGithub)
                 }}>{importGithub && "Close"} Import projects from github</Button>
-                <Button className={styles.nav_button} variant="outlined" onClick={ e => {
+                <Button className="Button" variant="outlined" onClick={ e => {
                     setCreateProject(true)
                 }}>Create Project</Button>
             </div>
