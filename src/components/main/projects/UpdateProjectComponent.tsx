@@ -20,6 +20,8 @@ import {addProject, updateProject} from "../../../slices/ProjectsSlice";
 import {CheckBox} from "@mui/icons-material";
 import {useLazyGetSkillsQuery} from "../../../api/SkillsApi";
 import {useState} from "react";
+import styles from "../../../css/main/projects/PutProject.module.sass"
+import {buttonCss} from "../../../utils/MuiButtonCss";
 
 interface UpdateProjectProps extends Partial<Project> {
     setUpdateProject: any
@@ -45,7 +47,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
         return (
             <div>
                 <h2>Project updated</h2>
-                <Button className="Button" variant="outlined" onClick={e => {
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={e => {
                     props.setUpdateProject(false)
                     if (data) {
                         dispatch(updateProject(data))
@@ -114,7 +116,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                     <div>
                         Goals:
                         <TextField className="TextField" label="goal" variant="outlined" onChange={e => setGoal(e.target.value)} />
-                        <Button className="Button" variant="outlined" onClick={
+                        <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                             e => {
                                 setGoals([...goals, goal])
                                 setGoal("")
@@ -124,7 +126,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                                 {goals.map(it =>
                                     <div key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setGoals(goals.filter(goal => goal !== it))
                                             }}>Delete</Button>
@@ -137,7 +139,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                     <div>
                         Features:
                         <TextField className="TextField" label="feature" variant="outlined" onChange={e => { setFeature(e.target.value) }} />
-                        <Button className="Button" variant="outlined" onClick={
+                        <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                             e => {
                                 setFeatures([...features, feature])
                                 setFeature("")
@@ -148,7 +150,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                                 {features.map(it =>
                                     <div key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setFeatures(features.filter(feature => feature !== it))
                                             }
@@ -174,7 +176,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                                 }
                             }}
                         />
-                        <Button className="Button" variant="outlined" onClick={
+                        <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                             e => {
                                 setTechnologies([...technologies, technology])
                                 setTechnology("")
@@ -185,7 +187,7 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                                 {technologies.map(it =>
                                     <div key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setTechnologies(technologies.filter(technology => technology !== it))
                                             }
@@ -198,8 +200,8 @@ export default function UpdateProjectPage(props: UpdateProjectProps) {
                 </div>
 
                 <div>
-                    <Button className="Button" variant="outlined" type="submit">Update Project</Button>
-                    <Button className="Button" variant="outlined" onClick={e => {
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" type="submit">Update Project</Button>
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={e => {
                         props.setUpdateProject(false)
                     }}>Return</Button>
                 </div>

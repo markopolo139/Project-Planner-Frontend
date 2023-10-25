@@ -7,6 +7,8 @@ import {useDispatch} from "react-redux";
 import {addProject} from "../../../slices/ProjectsSlice";
 import {useState} from "react";
 import {useLazyGetSkillsQuery} from "../../../api/SkillsApi";
+import styles from "../../../css/main/projects/PutProject.module.sass"
+import {buttonCss} from "../../../utils/MuiButtonCss";
 
 interface CreateProjectProps extends Partial<Project> {
     setCreateProject: any
@@ -32,7 +34,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
         return (
             <div>
                 <h2>Project created</h2>
-                <Button className="Button" variant="outlined" onClick={e => {
+                <Button className={styles.button} variant="outlined" onClick={e => {
                     props.setCreateProject(false)
                     if (data) {
                         dispatch(addProject(data))
@@ -107,7 +109,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                     <div>
                         Goals:
                         <TextField className="TextField" label="goal" variant="outlined" onChange={e => setGoal(e.target.value)} />
-                        <Button className="Button" variant="outlined" onClick={
+                        <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                             e => {
                                 setGoals([...goals, goal])
                                 setGoal("")
@@ -117,7 +119,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                                 {goals.map(it =>
                                     <div key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setGoals(goals.filter(goal => goal !== it))
                                         }}>Delete</Button>
@@ -130,7 +132,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                     <div>
                         Features:
                         <TextField className="TextField" label="feature" variant="outlined" onChange={e => { setFeature(e.target.value) }} />
-                        <Button className="Button" variant="outlined" onClick={
+                        <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                             e => {
                                 setFeatures([...features, feature])
                                 setFeature("")
@@ -141,7 +143,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                                 {features.map(it =>
                                     <div key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setFeatures(features.filter(feature => feature !== it))
                                             }
@@ -167,7 +169,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                                 }
                             }}
                         />
-                        <Button className="Button" variant="outlined" onClick={
+                        <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                             e => {
                                 setTechnologies([...technologies, technology])
                                 setTechnology("")
@@ -178,7 +180,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                                 {technologies.map(it =>
                                     <div key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" variant="outlined" onClick={
+                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setTechnologies(technologies.filter(technology => technology !== it))
                                             }
@@ -191,8 +193,8 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                 </div>
 
                 <div>
-                    <Button className="Button" variant="outlined" type="submit">Create Project</Button>
-                    <Button className="Button" variant="outlined" onClick={e => {
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" type="submit">Create Project</Button>
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={e => {
                         props.setCreateProject(false)
                     }}>Return</Button>
                 </div>

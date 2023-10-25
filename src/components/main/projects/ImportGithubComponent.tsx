@@ -12,6 +12,7 @@ import {addOnlyNewProjects, addProjects, selectProjects} from "../../../slices/P
 import {useCreateProjectsMutation} from "../../../api/ProjectApi";
 import Project from "../../../objects/Project";
 import styles from "../../../css/main/projects/ImportGithub.module.sass"
+import {buttonCss} from "../../../utils/MuiButtonCss";
 
 interface ImportGithubProps {
     setImportGithub: any
@@ -75,11 +76,11 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
             { isImport ||
                 <div className={styles.popup_text}>
                     <h2>Select method</h2>
-                    <Button className={styles.button} variant="outlined" onClick={ e => {
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
                         setImport(true)
                         setUsernameImport(false)
                     }}>Import private(via github token) projects</Button>
-                    <Button className={styles.button} variant="outlined" onClick={ e => {
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
                         setImport(true)
                         setUsernameImport(true)
                     }}>Import public(via github username) projects</Button>
@@ -95,7 +96,7 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
                         className="TextField" label={isUsernameImport ? "Type username" : "Type token"} variant="outlined"
                         onChange={ e => { setText(e.target.value.trim()) } }
                     />
-                    <Button className={styles.button} variant="outlined" type="submit">Import projects</Button>
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" type="submit">Import projects</Button>
                 </form>
             }
         </Popup>

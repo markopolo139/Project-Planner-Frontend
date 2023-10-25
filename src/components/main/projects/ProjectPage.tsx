@@ -8,6 +8,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Popup from "reactjs-popup";
 import {useDeleteProjectMutation} from "../../../api/ProjectApi";
 import ErrorPopup from "../../error/ErrorPopup";
+import styles from "../../../css/main/projects/ProjectPage.module.sass"
+import {buttonCss} from "../../../utils/MuiButtonCss";
 
 export default function ProjectPage() {
     const [deleteProjectApi] = useDeleteProjectMutation()
@@ -32,21 +34,28 @@ export default function ProjectPage() {
         <div>
             { error && <ErrorPopup error={error} /> }
             <ProjectSummary project={project} />
-            <Button className="Button" variant="outlined" onClick={ e => {
-                setUpdate(true)
-            }}>Update Project</Button>
-            <Button className="Button" variant="outlined" onClick={ e => {
-                setOpen(true)
-            }}>Delete Project</Button>
-            <Link to={`../project/plans/${project.title}`}>To Plan</Link>
+            <div className={styles.buttons}>
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
+                    setUpdate(true)
+                }}>Update Project</Button>
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
+                    setOpen(true)
+                }}>Delete Project</Button>
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
+                    navigate("..", { replace: true, relative: "path" })
+                }}>Return</Button>
+                <Link className={styles.link} to={`../project/plans/${project.title}`}>To Plan</Link>
+            </div>
             <Popup open={open} closeOnDocumentClick={false} contentStyle={{ width: '17%' }}>
                 <div>
                     <div>
                         <h2>Are you sure</h2>
+                        <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
+                    </div>
+                    <div>
                         <h3>All data will be lost</h3>
                         <Button onClick={handleDeleteConfirmClick}>Confirm</Button>
                     </div>
-                    <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
                 </div>
             </Popup>
         </div>
@@ -59,9 +68,8 @@ interface ProjectSummaryProps {
 
 function ProjectSummary(props: ProjectSummaryProps) {
     let project = props.project
-    console.log(project.dateOfStart)
     return (
-        <div>
+        <div className={styles.project_summary}>
             <h2>{project.title}:{project.projectStatus.replace("_", " ")}</h2>
             <p>Github link: {project.githubLink}</p>
             <p>Used language: {project.language}</p>

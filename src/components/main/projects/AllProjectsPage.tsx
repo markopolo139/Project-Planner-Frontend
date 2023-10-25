@@ -8,6 +8,7 @@ import ImportGithubComponent from "./ImportGithubComponent";
 import ProjectFilterComponent from "./ProjectFilterComponent";
 import CreateProjectPage from "./CreateProjectPage";
 import styles from "../../../css/main/projects/AllProjects.module.sass"
+import {buttonCss} from "../../../utils/MuiButtonCss";
 
 export default function AllProjectsPage() {
     const [importGithub, setImportGithub] = useState(false)
@@ -32,13 +33,13 @@ export default function AllProjectsPage() {
             { importGithub && <ImportGithubComponent setImportGithub={setImportGithub} /> }
             <h2>All Projects:</h2>
             <div className={styles.nav_bar}>
-                <Button className={styles.button} variant="outlined" onClick={ e => {
+                <Button sx={buttonCss} variant="outlined" onClick={ e => {
                     setFilter(!filter)
                 }}>{filter && "Close"} Filter</Button>
-                <Button className={styles.button} variant="outlined" onClick={ e => {
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
                     setImportGithub(!importGithub)
                 }}>{importGithub && "Close"} Import projects from github</Button>
-                <Button className={styles.button} variant="outlined" onClick={ e => {
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={ e => {
                     setCreateProject(true)
                 }}>Create Project</Button>
             </div>

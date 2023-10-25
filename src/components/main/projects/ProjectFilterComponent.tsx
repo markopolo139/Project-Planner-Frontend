@@ -8,6 +8,7 @@ import {Button, Checkbox, MenuItem, Select, TextField} from "@mui/material";
 import ProjectStatus from "../../../objects/ProjectStatus";
 import {AnyAction, Dispatch} from "@reduxjs/toolkit";
 import styles from "../../../css/main/projects/ProjectFilter.module.sass"
+import {buttonCss} from "../../../utils/MuiButtonCss";
 
 interface ProjectFilterProps {
     dispatch: Dispatch<AnyAction>
@@ -91,12 +92,12 @@ export default function ProjectFilterComponent(props: ProjectFilterProps) {
                 </Select>
             </div>
             <div className={styles.filter_buttons}>
-                <Button className={styles.button} variant="outlined" onClick={
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                     e => {
                         getFilterd(filterModel)
                     }
                 }>Filter</Button>
-                <Button className={styles.button} variant="outlined" onClick={
+                <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
                     e => {
                         setFilterModel({})
                         getFilterd({})
