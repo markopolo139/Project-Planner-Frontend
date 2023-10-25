@@ -75,11 +75,11 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
             { isImport ||
                 <div className={styles.popup_text}>
                     <h2>Select method</h2>
-                    <Button className="Button" variant="outlined" onClick={ e => {
+                    <Button className={styles.button} variant="outlined" onClick={ e => {
                         setImport(true)
                         setUsernameImport(false)
                     }}>Import private(via github token) projects</Button>
-                    <Button className="Button" variant="outlined" onClick={ e => {
+                    <Button className={styles.button} variant="outlined" onClick={ e => {
                         setImport(true)
                         setUsernameImport(true)
                     }}>Import public(via github username) projects</Button>
@@ -95,7 +95,7 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
                         className="TextField" label={isUsernameImport ? "Type username" : "Type token"} variant="outlined"
                         onChange={ e => { setText(e.target.value.trim()) } }
                     />
-                    <Button className="Button" variant="outlined" type="submit">Import projects</Button>
+                    <Button className={styles.button} variant="outlined" type="submit">Import projects</Button>
                 </form>
             }
         </Popup>
