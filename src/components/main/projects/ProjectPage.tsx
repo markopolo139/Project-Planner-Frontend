@@ -70,14 +70,14 @@ function ProjectSummary(props: ProjectSummaryProps) {
     let project = props.project
     return (
         <div className={styles.project_summary}>
-            <h2>{project.title}:{project.projectStatus.replace("_", " ")}</h2>
-            <p>Github link: {project.githubLink}</p>
-            <p>Used language: {project.language}</p>
-            <p>Description: {project.description}</p>
-            <p>Date of start: {new Date(project.dateOfStart).toLocaleDateString("pl-PL")}</p>
-            { project.deadline && <p>Date of start: {new Date(project.deadline).toLocaleDateString("pl-PL")}</p> }
+            <h2 className={styles.header}>{project.title}:{project.projectStatus.replace("_", " ")}</h2>
+            <span className={styles.data}>Github link: {project.githubLink}</span>
+            <span className={styles.data}>Used language: {project.language}</span>
+            <span className={styles.data}>Description: {project.description}</span>
+            <span className={styles.data}>Date of start: {new Date(project.dateOfStart).toLocaleDateString("pl-PL")}</span>
+            { project.deadline && <span className={styles.data}>Date of start: {new Date(project.deadline).toLocaleDateString("pl-PL")}</span> }
 
-            <Accordion>
+            <Accordion className={styles.accordion}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>Features</AccordionSummary>
                 <AccordionDetails>
                     <Typography>
@@ -88,7 +88,7 @@ function ProjectSummary(props: ProjectSummaryProps) {
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion>
+            <Accordion className={styles.accordion}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>Goals</AccordionSummary>
                 <AccordionDetails>
                     <div>
@@ -97,7 +97,7 @@ function ProjectSummary(props: ProjectSummaryProps) {
                 </AccordionDetails>
             </Accordion>
 
-            <Accordion>
+            <Accordion className={styles.accordion}>
                 <AccordionSummary expandIcon={<ExpandMoreIcon />}>Technology used</AccordionSummary>
                 <AccordionDetails>
                     <div>
