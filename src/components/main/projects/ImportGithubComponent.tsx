@@ -11,15 +11,16 @@ import {mapToProject} from "../../../objects/GithubResponse";
 import {addOnlyNewProjects, addProjects, selectProjects} from "../../../slices/ProjectsSlice";
 import {useCreateProjectsMutation} from "../../../api/ProjectApi";
 import Project from "../../../objects/Project";
+import styles from "../../../css/main/projects/ImportGithub.module.sass"
 
 interface ImportGithubProps {
     setImportGithub: any
 }
 
 export default function ImportGithubComponent(props: ImportGithubProps) {
-    const [open, setOpen] = useState(true);
-    const [isImport, setImport] = useState(false);
-    const [isUsernameImport, setUsernameImport] = useState(true);
+    const [open, setOpen] = useState(true)
+    const [isImport, setImport] = useState(false)
+    const [isUsernameImport, setUsernameImport] = useState(true)
     const [text, setText] = useState("")
     const dispatch = useDispatch()
     const [getPublicProjects, { error: errorPublic }] = useLazyGetPublicReposQuery()
@@ -58,19 +59,21 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
     }
 
     return (
-        <Popup open={open} closeOnDocumentClick>
+        <Popup open={open} closeOnDocumentClick={false}>
             { errorPublic && <ErrorPopup error={errorPublic} /> }
             { errorPrivate && <ErrorPopup error={errorPrivate} /> }
             { createProjectsError && <ErrorPopup error={createProjectsError} /> }
-            <div className="popup-header">
+            <div className={styles.popup_header}>
                 <h2>Import projects</h2>
-                <CloseIcon className="popup-close" onClick={() => {
-                    setOpen(false)
-                    props.setImportGithub(false)
-                }}></CloseIcon>
+                <div className={styles.popup_close_container}>
+                    <CloseIcon className={styles.popup_close} onClick={() => {
+                        setOpen(false)
+                        props.setImportGithub(false)
+                    }}></CloseIcon>
+                </div>
             </div>
             { isImport ||
-                <div className="popup-text">
+                <div className={styles.popup_text}>
                     <h2>Select method</h2>
                     <Button className="Button" variant="outlined" onClick={ e => {
                         setImport(true)
@@ -83,7 +86,7 @@ export default function ImportGithubComponent(props: ImportGithubProps) {
                 </div>
             }
             { isImport &&
-                <form onSubmit={e => {
+                <form className={styles.popup_form} onSubmit={e => {
                     e.preventDefault()
                     setImport(false)
                     apiCall()
