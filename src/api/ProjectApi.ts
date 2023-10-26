@@ -66,17 +66,19 @@ export const projectApi = createApi({
                 params: { ...model }
             })
         }),
-        getProjects: builder.query<Array<Project>, void>({
+        getProjects: builder.mutation<Array<Project>, void>({
             query: () => ({
                 url: "get",
                 method: "GET",
-            })
+            }),
+            invalidatesTags: ['Projects']
         }),
-        getProjectByTitle: builder.query<Project, string>({
+        getProjectByTitle: builder.mutation<Project, string>({
             query: (title) => ({
                 url: `get/title?title=${title}`,
                 method: "GET",
-            })
+            }),
+            invalidatesTags: ['Projects']
         }),
     })
 })
@@ -84,6 +86,6 @@ export const projectApi = createApi({
 export const {
     useCreateProjectMutation, useCreateProjectsMutation,
     useUpdateProjectMutation, useDeleteProjectMutation,
-    useLazyFilterProjectsQuery, useGetProjectsQuery,
-    useGetProjectByTitleQuery
+    useLazyFilterProjectsQuery, useGetProjectsMutation,
+    useGetProjectByTitleMutation
 } = projectApi
