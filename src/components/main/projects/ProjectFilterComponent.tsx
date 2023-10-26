@@ -27,7 +27,6 @@ export default function ProjectFilterComponent(props: ProjectFilterProps) {
             props.dispatch(setNewProjects(data))
         }
     }
-    //TODO: Add colors to project status filter
     return (
         <div className={styles.body}>
             { isError && <ErrorPopup error={error} /> }
@@ -70,23 +69,24 @@ export default function ProjectFilterComponent(props: ProjectFilterProps) {
                 <Select
                     style={{width: "75%"}}
                     defaultValue={"ACTIVE"}
+                    inputProps={{'sx': {'display': 'flex', 'justifyContent': 'space-between'}}}
                     onChange={event => {
                         setFilterModel({...filterModel, projectStatus: event.target.value as ProjectStatus})
                     }}
                 >
-                    <MenuItem className={styles.menu_item} value={"ACTIVE"}>
+                    <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"ACTIVE"}>
                         Active <div style={{background: "blue", width: "24px", height: "24px"}}></div>
                     </MenuItem>
-                    <MenuItem className={styles.menu_item} value={"BREAK"}>
+                    <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"BREAK"}>
                         Break <div style={{background: "yellow", width: "24px", height: "24px"}}></div>
                     </MenuItem>
-                    <MenuItem className={styles.menu_item} value={"CANCELED"}>
+                    <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"CANCELED"}>
                         Canceled <div style={{background: "red", width: "24px", height: "24px"}}></div>
                     </MenuItem>
-                    <MenuItem className={styles.menu_item} value={"WORKING_ON"}>
+                    <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"WORKING_ON"}>
                         Working on <div style={{background: "green", width: "24px", height: "24px"}}></div>
                     </MenuItem>
-                    <MenuItem className={styles.menu_item} value={"NOT_STARTED"}>
+                    <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"NOT_STARTED"}>
                         Not started yet <div style={{background: "gray", width: "24px", height: "24px"}}></div>
                     </MenuItem>
                 </Select>
