@@ -47,15 +47,13 @@ export default function ProjectPage() {
                 <Link className={styles.link} to={`../project/plans/${project.title}`}>To Plan</Link>
             </div>
             <Popup open={open} closeOnDocumentClick={false} contentStyle={{ width: '17%' }}>
-                <div>
+                <div className={styles.delete_header_popup}>
                     <div>
                         <h2>Are you sure</h2>
-                        <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
-                    </div>
-                    <div>
                         <h3>All data will be lost</h3>
-                        <Button onClick={handleDeleteConfirmClick}>Confirm</Button>
+                        <Button className={styles.confirmButton} sx={buttonCss} onClick={handleDeleteConfirmClick}>Confirm</Button>
                     </div>
+                    <CloseIcon className={styles.popup_close} onClick={() => setOpen(false)}></CloseIcon>
                 </div>
             </Popup>
         </div>

@@ -8,6 +8,7 @@ import {logout} from "../../slices/LoggedInUserSlice";
 import {useDeleteUserMutation} from "../../api/UserApi";
 import ErrorPopup from "../error/ErrorPopup";
 import styles from "../../css/userSettings/UserSettings.module.sass"
+import {buttonCss} from "../../utils/MuiButtonCss";
 
 export default function UserSettingsPage() {
     const [deleteUser] = useDeleteUserMutation()
@@ -55,9 +56,9 @@ export default function UserSettingsPage() {
                         <div>
                             <h2>Are you sure</h2>
                             <h3>All data will be lost</h3>
-                            <Button className={styles.confirmButton} onClick={handleDeleteConfirmClick}>Confirm</Button>
+                            <Button className={styles.confirmButton} sx={buttonCss} onClick={handleDeleteConfirmClick}>Confirm</Button>
                         </div>
-                        <CloseIcon className="popup-close" onClick={() => setOpen(false)}></CloseIcon>
+                        <CloseIcon className={styles.popup_close} onClick={() => setOpen(false)}></CloseIcon>
                     </div>
                 </Popup>
             </div>
