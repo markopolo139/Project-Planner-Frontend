@@ -1,5 +1,5 @@
-import {store} from "../Strore";
-import {projectApi} from "../../api/ProjectApi";
+import {store} from "../../Strore";
+import {projectApi} from "../../../api/ProjectApi";
 import {LoaderFunctionArgs, redirect, RouteObject} from "react-router-dom";
 
 export async function projectLoader({ params }: LoaderFunctionArgs<any>) {

@@ -12,10 +12,10 @@ import ChangePasswordForm from "../components/userSetting/ChangePasswordForm";
 import ChangeEmailForm from "../components/userSetting/ChangeEmailForm";
 import ProjectPage from "../components/main/projects/ProjectPage";
 import ProjectPlanPage from "../components/main/projectsPlans/ProjectPlanPage";
-import {projectsLoader} from "./dataLoader/ProjectsLoader";
+import {projectsLoader} from "./dataLoader/projects/ProjectsLoader";
 import CreateProjectPage from "../components/main/projects/CreateProjectPage";
 import CreatePlanPage from "../components/main/projectsPlans/CreatePlanPage";
-import {projectLoader} from "./dataLoader/ProjectLoader";
+import {projectLoader} from "./dataLoader/projects/ProjectLoader";
 
 export const router = createBrowserRouter([
     {
@@ -47,10 +47,6 @@ export const router = createBrowserRouter([
                     {
                         path: "/home/project/plans",
                         element: <AllProjectPlansPage />
-                    },
-                    {
-                        path: "/home/project/plans/create",
-                        element: <CreatePlanPage />
                     },
                     {
                         path: "/home/project/plans/:projectPlanId",

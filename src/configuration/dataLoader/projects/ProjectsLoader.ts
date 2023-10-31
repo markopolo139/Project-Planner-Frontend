@@ -1,6 +1,6 @@
-import {projectApi} from "../../api/ProjectApi";
-import {store} from "../Strore";
-import {setNewProjects} from "../../slices/ProjectsSlice";
+import {projectApi} from "../../../api/ProjectApi";
+import {store} from "../../Strore";
+import {setNewProjects} from "../../../slices/ProjectsSlice";
 
 export async function projectsLoader() {
     const promise = store.dispatch(projectApi.endpoints?.getProjects.initiate())
