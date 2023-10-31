@@ -32,22 +32,24 @@ export default function CreateProjectPage(props: CreateProjectProps) {
 
     if (isSuccess) {
         return (
-            <div>
-                <h2>Project created</h2>
-                <Button className={styles.button} variant="outlined" onClick={e => {
-                    props.setCreateProject(false)
-                    if (data) {
-                        dispatch(addProject(data))
-                    }
-                }}>Return</Button>
+            <div className={styles.main}>
+                <div className={styles.updated}>
+                    <h2>Project created</h2>
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={e => {
+                        props.setCreateProject(false)
+                        if (data) {
+                            dispatch(addProject(data))
+                        }
+                    }}>Return</Button>
+                </div>
             </div>
         )
     }
 
     return (
-        <div>
+        <div className={styles.main}>
             { isError && <ErrorPopup error={error} /> }
-            <form onSubmit={ handleSubmit((data) => {
+            <form className={styles.form} onSubmit={ handleSubmit((data) => {
                 let project = data as Project
                 project.goals = goals
                 project.features = features
@@ -56,57 +58,86 @@ export default function CreateProjectPage(props: CreateProjectProps) {
             }) }>
                 <input hidden value={props.projectId} type="number" {...register("projectId")}></input>
                 <h2>Create project:</h2>
-                <TextField
-                    defaultValue={props.githubLink} className="TextField" label="githubLink" variant="outlined"
-                    type="text" {...register("githubLink")}
-                />
-                <TextField
-                    defaultValue={props.title} className="TextField" label="title" variant="outlined"
-                    type="text" {...register("title")}
-                />
-                <TextField
-                    defaultValue={props.description} className="TextField" label="description" variant="outlined"
-                    type="text" {...register("description")}
-                />
-                <TextField
-                    defaultValue={props.language} className="TextField" label="language" variant="outlined"
-                    type="text" {...register("language")}
-                />
-                <div>
-                    <label>deadline</label>
-                    <TextField
-                        defaultValue={props.deadline?.toISOString().split("Z")[0]} className="TextField"
-                        variant="outlined" type="datetime-local" {...register("deadline")}
-                    />
-                </div>
-                <div>
-                    <label>dateOfStart</label>
-                    <TextField
-                        defaultValue={props.dateOfStart?.toISOString().split("Z")[0]} className="TextField"
-                        variant="outlined" type="datetime-local" {...register("dateOfStart")}
-                    />
-                </div>
-                <div>
-                    Is current?
-                    <Checkbox {...register("isCurrent")}/>
+
+                <div className={styles.inputs}>
+                    <div className={styles.input}>
+                        <label>Github Link:</label>
+                        <TextField
+                            defaultValue={props.githubLink} className="TextField" placeholder="Github Link" variant="outlined"
+                            type="text" {...register("githubLink")}
+                        />
+                    </div>
+
+                    <div className={styles.input}>
+                        <label>Project Title:</label>
+                        <TextField
+                            defaultValue={props.title} className="TextField" placeholder="Project Title" variant="outlined"
+                            type="text" {...register("title")}
+                        />
+                    </div>
+
+                    <div className={styles.input}>
+                        <label>Language:</label>
+                        <TextField
+                            defaultValue={props.language} className="TextField" placeholder="Language" variant="outlined"
+                            type="text" {...register("language")}
+                        />
+                    </div>
                 </div>
 
-                <div>
-                    Project status:
-                    <Select
-                        defaultValue={"ACTIVE"}
-                        {...register("projectStatus")}
-                    >
-                        <MenuItem value={"ACTIVE"}>Active</MenuItem>
-                        <MenuItem value={"BREAK"}>Break</MenuItem>
-                        <MenuItem value={"CANCELED"}>Canceled</MenuItem>
-                        <MenuItem value={"WORKING_ON"}>Working on</MenuItem>
-                        <MenuItem value={"NOT_STARTED"}>Not started yet</MenuItem>
-                    </Select>
+                <div className={styles.inputs}>
+                    <div className={styles.input}>
+                        <label>Date of start:</label>
+                        <TextField
+                            defaultValue={props.dateOfStart?.toISOString().split("Z")[0]} className="TextField"
+                            variant="outlined" type="datetime-local" {...register("dateOfStart")}
+                        />
+                    </div>
+
+                    <div className={styles.input}>
+                        <label>Is current?</label>
+                        <Checkbox {...register("isCurrent")}/>
+                    </div>
+
+                    <div className={styles.input}>
+                        <label>Deadline:</label>
+                        <TextField
+                            defaultValue={props.deadline?.toISOString().split("Z")[0]} className="TextField"
+                            variant="outlined" type="datetime-local" {...register("deadline")}
+                        />
+                    </div>
                 </div>
 
-                <div>
-                    <div>
+                <div className={styles.inputs}>
+                    <div className={styles.input}>
+                        <label>Project status:</label>
+                        <Select
+                            style={{width: "100%"}}
+                            defaultValue={props.projectStatus}
+                            inputProps={{'sx': {'display': 'flex', 'justifyContent': 'space-between'}}}
+                            {...register("projectStatus")}
+                        >
+                            <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"ACTIVE"}>
+                                Active <div style={{background: "blue", width: "24px", height: "24px"}}></div>
+                            </MenuItem>
+                            <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"BREAK"}>
+                                Break <div style={{background: "yellow", width: "24px", height: "24px"}}></div>
+                            </MenuItem>
+                            <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"CANCELED"}>
+                                Canceled <div style={{background: "red", width: "24px", height: "24px"}}></div>
+                            </MenuItem>
+                            <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"WORKING_ON"}>
+                                Working on <div style={{background: "green", width: "24px", height: "24px"}}></div>
+                            </MenuItem>
+                            <MenuItem sx={{'display': 'flex', 'justifyContent': 'space-between'}} value={"NOT_STARTED"}>
+                                Not started yet <div style={{background: "gray", width: "24px", height: "24px"}}></div>
+                            </MenuItem>
+                        </Select>
+                    </div>
+                </div>
+
+                <div className={styles.inputs}>
+                    <div className={styles.list_input}>
                         Goals:
                         <TextField className="TextField" label="goal" variant="outlined" onChange={e => setGoal(e.target.value)} />
                         <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
@@ -115,11 +146,11 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                                 setGoal("")
                         }}>Add Goal</Button>
                         { (goals.length !== 0)
-                            && <Stack spacing={1}>
+                            && <Stack className={styles.stack} spacing={1}>
                                 {goals.map(it =>
-                                    <div key={it}>
+                                    <div className={styles.stack_item} key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
+                                        <Button className={styles.button_stack} sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setGoals(goals.filter(goal => goal !== it))
                                         }}>Delete</Button>
@@ -129,7 +160,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                         }
                     </div>
 
-                    <div>
+                    <div className={styles.list_input}>
                         Features:
                         <TextField className="TextField" label="feature" variant="outlined" onChange={e => { setFeature(e.target.value) }} />
                         <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={
@@ -139,11 +170,11 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                             }
                         }>Add Feature</Button>
                         { (features.length !== 0)
-                            && <Stack spacing={1}>
+                            && <Stack className={styles.stack} spacing={1}>
                                 {features.map(it =>
-                                    <div key={it}>
+                                    <div className={styles.stack_item} key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
+                                        <Button className={styles.button_stack} sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setFeatures(features.filter(feature => feature !== it))
                                             }
@@ -154,7 +185,7 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                         }
                     </div>
 
-                    <div>
+                    <div className={styles.list_input}>
                         Technologies:
                         <Autocomplete
                             disablePortal
@@ -176,11 +207,11 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                             }
                         }>Add Technology</Button>
                         { (technologies.length !== 0)
-                            && <Stack spacing={1}>
+                            && <Stack className={styles.stack} spacing={1}>
                                 {technologies.map(it =>
-                                    <div key={it}>
+                                    <div className={styles.stack_item} key={it}>
                                         <span>{it}</span>
-                                        <Button className="Button-Stack" sx={buttonCss} variant="outlined" onClick={
+                                        <Button className={styles.button_stack} sx={buttonCss} variant="outlined" onClick={
                                             e => {
                                                 setTechnologies(technologies.filter(technology => technology !== it))
                                             }
@@ -191,8 +222,14 @@ export default function CreateProjectPage(props: CreateProjectProps) {
                         }
                     </div>
                 </div>
-
-                <div>
+                <div className={styles.input}>
+                    <label>Description: </label>
+                    <textarea
+                        defaultValue={props.description} className={styles.textarea}
+                        {...register("description")}
+                    ></textarea>
+                </div>
+                <div className={styles.buttons}>
                     <Button className={styles.button} sx={buttonCss} variant="outlined" type="submit">Create Project</Button>
                     <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={e => {
                         props.setCreateProject(false)
