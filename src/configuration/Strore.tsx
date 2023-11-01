@@ -5,6 +5,7 @@ import {createUserApi} from "../api/CreateUserApi";
 import {notificationApi} from "../api/NotificationApi";
 import loggedInUserReducer from "../slices/LoggedInUserSlice";
 import projectsReducer from "../slices/ProjectsSlice";
+import projectsPlansReducer from "../slices/ProjectPlansSlice";
 import {userApi} from "../api/UserApi";
 import {projectApi} from "../api/ProjectApi";
 import {githubApi} from "../api/GithubApi";
@@ -15,6 +16,7 @@ export const store = configureStore({
     reducer: {
         loggedInUser: loggedInUserReducer,
         projects: projectsReducer,
+        projectsPlans: projectsPlansReducer,
         [authApi.reducerPath]: authApi.reducer,
         [recoveryPasswordApi.reducerPath]: recoveryPasswordApi.reducer,
         [createUserApi.reducerPath]: createUserApi.reducer,

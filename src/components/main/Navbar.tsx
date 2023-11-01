@@ -11,6 +11,8 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {logout, selectLoggedInUserData, selectUsername} from "../../slices/LoggedInUserSlice";
 import styles from "../../css/main/Navbar.module.sass"
+import {deleteAllProjects} from "../../slices/ProjectsSlice";
+import {deleteAllProjectsPlans} from "../../slices/ProjectPlansSlice";
 
 export default function Navbar() {
     const [
@@ -93,6 +95,8 @@ export default function Navbar() {
                 </MenuItem>
                 <MenuItem onClick={(e) => {
                     dispatch(logout())
+                    dispatch(deleteAllProjects())
+                    dispatch(deleteAllProjectsPlans())
                     navigate("/")
                 }}>
                     <ListItemIcon><Logout /></ListItemIcon> Logout
