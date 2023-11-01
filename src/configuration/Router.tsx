@@ -16,6 +16,8 @@ import {projectsLoader} from "./dataLoader/projects/ProjectsLoader";
 import CreateProjectPage from "../components/main/projects/CreateProjectPage";
 import CreatePlanPage from "../components/main/projectsPlans/CreatePlanPage";
 import {projectLoader} from "./dataLoader/projects/ProjectLoader";
+import {projectPlanLoader} from "./dataLoader/projectPlans/ProjectPlanLoader";
+import {projectsPlansLoader} from "./dataLoader/projectPlans/ProjectsPlansLoader";
 
 export const router = createBrowserRouter([
     {
@@ -46,11 +48,13 @@ export const router = createBrowserRouter([
                     },
                     {
                         path: "/home/project/plans",
-                        element: <AllProjectPlansPage />
+                        element: <AllProjectPlansPage />,
+                        loader: projectsPlansLoader
                     },
                     {
-                        path: "/home/project/plans/:projectPlanId",
-                        element: <ProjectPlanPage />
+                        path: "/home/project/plans/:projectPlanTitle",
+                        element: <ProjectPlanPage />,
+                        loader: projectPlanLoader
                     },
                     {
                         path: "/home/user/settings",
