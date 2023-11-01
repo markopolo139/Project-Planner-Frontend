@@ -4,8 +4,7 @@ import {LoaderFunctionArgs, redirect, RouteObject} from "react-router-dom";
 
 export async function projectLoader({ params }: LoaderFunctionArgs<any>) {
     if (typeof params.projectTitle === "undefined") {
-        redirect("/home/projects")
-        return null
+        return redirect("/home/projects")
     }
 
     const promise = store.dispatch(projectApi.endpoints?.getProjectByTitle.initiate(params.projectTitle))
@@ -14,8 +13,7 @@ export async function projectLoader({ params }: LoaderFunctionArgs<any>) {
         return await promise.unwrap()
     } catch (e) {
         console.log("Error in project loader")
-        redirect("/home/projects")
-        return null
+        return redirect("/home/projects")
     } finally {
         promise.reset()
     }

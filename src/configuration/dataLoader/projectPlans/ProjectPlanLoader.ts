@@ -5,18 +5,16 @@ import {projectPlanApi} from "../../../api/ProjectPlanApi";
 
 export async function projectPlanLoader({ params }: LoaderFunctionArgs<any>) {
     if (typeof params.projectPlanTitle === "undefined") {
-        redirect("/home/project/plans")
-        return null
+        return redirect("/home/project/plans")
     }
 
     const promise = store.dispatch(projectPlanApi.endpoints?.getProjectPlanByTitle.initiate(params.projectPlanTitle))
 
     try {
-        return await promise.unwrap()
+        return await promise.unwrap()!!
     } catch (e) {
         console.log("Error in project loader")
-        redirect("/home/project/plans")
-        return null
+        return redirect("/home/project/plans")
     } finally {
         promise.reset()
     }
