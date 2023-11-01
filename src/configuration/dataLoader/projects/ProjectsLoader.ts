@@ -9,9 +9,9 @@ export async function projectsLoader() {
         store.dispatch(setNewProjects(result))
         return result
     } catch (e) {
-        console.log("Error in project loader")
+        console.log("Error in projects loader")
         return []
     } finally {
-        promise.unsubscribe()
+        promise.reset()
     }
 }

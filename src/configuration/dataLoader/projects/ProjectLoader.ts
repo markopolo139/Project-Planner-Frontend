@@ -17,6 +17,6 @@ export async function projectLoader({ params }: LoaderFunctionArgs<any>) {
         redirect("/home/projects")
         return null
     } finally {
-        promise.unsubscribe()
+        promise.reset()
     }
 }
