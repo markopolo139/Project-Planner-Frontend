@@ -23,7 +23,7 @@ export default function UserSettingsPage() {
         setOpen(false)
         deleteUser().unwrap().then( fulfilled => dispatch(logout())).catch(rejected => setError(rejected))
     }
-    //TODO: think how to show active component
+
     return (
         <div className={styles.mainDiv}>
             { error && <ErrorPopup error={error} /> }

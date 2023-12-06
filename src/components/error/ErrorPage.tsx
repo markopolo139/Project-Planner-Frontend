@@ -1,5 +1,6 @@
-import {isRouteErrorResponse, useRouteError} from "react-router-dom";
-//TODO: update this site (give button to login home)
+import {isRouteErrorResponse, redirect, useRouteError} from "react-router-dom";
+import {Button} from "@mui/material";
+
 export default function ErrorPage() {
     const error = useRouteError()
     let errorMessage: string
@@ -18,7 +19,10 @@ export default function ErrorPage() {
     return (
         <div>
             <p>Error occurred</p>
-    <p>{errorMessage}</p>
-    </div>
-)
+            <p>{errorMessage}</p>
+            <Button onClick={e => {
+                redirect("/")
+            }}>Return to login page</Button>
+        </div>
+    )
 }
