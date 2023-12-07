@@ -1,6 +1,6 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import styles from "../../../css/main/projects/AllProjects.module.sass";
+import styles from "../../../css/main/projectsPlans/AllProjectPlans.module.sass";
 import {Autocomplete, Button, TextField} from "@mui/material";
 import {buttonCss} from "../../../utils/MuiButtonCss";
 import {Link} from "react-router-dom";
@@ -79,9 +79,9 @@ export default function AllProjectPlansPage() {
                     setOpen(true)
                 }}>Create Project Plan</Button>
             </div>
-            <div className={styles.projects}>
+            <div className={styles.projectsPlans}>
                 {projectsPlans.map( it =>
-                    <Link to={ it.title } key={ it.title }>{it.title}</Link>
+                    <Link className={styles.projectPlan} to={ it.title } key={ it.title }>{it.title}</Link>
                 )}
             </div>
         </div>
