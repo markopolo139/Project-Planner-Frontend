@@ -49,15 +49,14 @@ export default function AllProjectPlansPage() {
     return (
         <div className={styles.body}>
 
-            <Popup open={open} closeOnDocumentClick={false} contentStyle={{ width: '17%' }}>
-                <div>
+            <Popup open={open} closeOnDocumentClick={false} contentStyle={{ width: '19%' }}>
+                <div className={styles.popup_header}>
                     <div>
                         <h2>Select project to based plan on</h2>
                         <Autocomplete
                             disablePortal
                             options={projects ? projects : []}
                             getOptionLabel={(option) => option.title}
-                            sx={{ width: 200 }}
                             filterOptions={(x) => x}
                             renderInput={(params) => <TextField {...params} label="Projects title" />}
                             onChange={ (e, value) => {
@@ -66,10 +65,12 @@ export default function AllProjectPlansPage() {
                                 }
                             }}
                         />
-                        <Button sx={buttonCss} onClick={handleSelectProjectButton}>Select</Button>
-                        <Button sx={buttonCss} onClick={handleSelectProjectButton}>Create New Plan</Button>
+                        <div className={styles.popup_buttons_div}>
+                            <Button sx={buttonCss} onClick={handleSelectProjectButton}>Select</Button>
+                            <Button sx={buttonCss} onClick={handleSelectProjectButton}>Create New Plan</Button>
+                        </div>
                     </div>
-                    <CloseIcon onClick={() => setOpen(false)}></CloseIcon>
+                    <CloseIcon className={styles.popup_close} onClick={() => setOpen(false)}></CloseIcon>
                 </div>
             </Popup>
 
