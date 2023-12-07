@@ -1,6 +1,6 @@
 import ProjectPlan from "../../../objects/ProjectPlan";
 import ErrorPopup from "../../error/ErrorPopup";
-import styles from "../../../css/main/projects/PutProject.module.sass";
+import styles from "../../../css/main/PutProject.module.sass";
 import Project from "../../../objects/Project";
 import {Autocomplete, Button, Checkbox, CircularProgress, MenuItem, Select, Stack, TextField} from "@mui/material";
 import {buttonCss} from "../../../utils/MuiButtonCss";

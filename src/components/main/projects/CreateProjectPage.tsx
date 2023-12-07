@@ -7,7 +7,7 @@ import {useDispatch} from "react-redux";
 import {addProject} from "../../../slices/ProjectsSlice";
 import {useState} from "react";
 import {useLazyGetSkillsQuery} from "../../../api/SkillsApi";
-import styles from "../../../css/main/projects/PutProject.module.sass"
+import styles from "../../../css/main/PutProject.module.sass"
 import {buttonCss} from "../../../utils/MuiButtonCss";
 
 interface CreateProjectProps extends Partial<Project> {

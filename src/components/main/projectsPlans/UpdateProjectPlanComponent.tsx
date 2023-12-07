@@ -1,4 +1,4 @@
-import styles from "../../../css/main/projects/PutProject.module.sass";
+import styles from "../../../css/main/PutProject.module.sass";
 import ErrorPopup from "../../error/ErrorPopup";
 import ProjectPlan from "../../../objects/ProjectPlan";
 import {Button, CircularProgress, Stack, TextField} from "@mui/material";

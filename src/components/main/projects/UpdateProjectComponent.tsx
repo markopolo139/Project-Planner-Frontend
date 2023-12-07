@@ -20,7 +20,7 @@ import {addProject, updateProject} from "../../../slices/ProjectsSlice";
 import {CheckBox} from "@mui/icons-material";
 import {useLazyGetSkillsQuery} from "../../../api/SkillsApi";
 import {useEffect, useState} from "react";
-import styles from "../../../css/main/projects/PutProject.module.sass"
+import styles from "../../../css/main/PutProject.module.sass"
 import {buttonCss} from "../../../utils/MuiButtonCss";
 import {wait} from "@testing-library/user-event/dist/utils";
 
