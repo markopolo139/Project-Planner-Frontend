@@ -2,7 +2,6 @@ import {createApi, fetchBaseQuery} from "@reduxjs/toolkit/dist/query/react";
 import {RootState} from "../configuration/Strore";
 import ProjectPlan from "../objects/ProjectPlan";
 import {ProjectPlanFilterModel} from "../objects/ProjectPlanFilterModel";
-import ProjectPlanTransformModel from "../objects/ProjectPlanTransformModel";
 import Project from "../objects/Project";
 
 export const projectPlanApi = createApi({
@@ -70,24 +69,12 @@ export const projectPlanApi = createApi({
                 method: "GET",
             }),
             invalidatesTags: ['Project Plans']
-        }),
-        transformProjectPlan: builder.mutation<Project, ProjectPlanTransformModel>({
-            query: (model: ProjectPlanTransformModel) => ({
-                url: "transform",
-                method: "POST",
-                body: model,
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }),
-            invalidatesTags: ['Project Plans', 'Projects']
-        }),
+        })
     })
 })
 
 export const {
     useCreateProjectPlanMutation, useUpdateProjectPlanMutation,
     useDeleteProjectPlanMutation, useFilterProjectsPlansQuery,
-    useGetProjectsPlansMutation, useGetProjectPlanByTitleMutation,
-    useTransformProjectPlanMutation
+    useGetProjectsPlansMutation, useGetProjectPlanByTitleMutation
 } = projectPlanApi
