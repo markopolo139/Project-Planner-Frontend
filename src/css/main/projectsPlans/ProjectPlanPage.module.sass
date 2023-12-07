@@ -1,0 +1,84 @@
+.project_summary
+  display: flex
+  flex-direction: column
+  align-items: center
+  justify-content: center
+  margin: 5px
+
+.accordion
+  width: 50%
+  margin-bottom: 15px
+
+.data
+  background-color: white
+  height: 50px
+  margin-bottom: 15px
+  display: flex
+  justify-content: flex-start
+  align-items: center
+  padding-left: 10px
+  width: 50%
+
+.buttons
+  display: flex
+  justify-content: space-evenly
+  & .button
+    display: flex
+    justify-content: center
+    align-items: center
+    text-decoration: none
+    width: 20%
+    height: 40px
+    margin: 15px
+
+  & .link
+    font-size: 1.15rem
+    display: flex
+    justify-content: center
+    align-items: center
+    text-decoration: none
+    color: #1976d2
+    width: 20%
+    height: 40px
+    margin: 15px
+    border: 1px solid rgba(25, 118, 210, 0.5)
+    border-radius: 4px
+
+.link:hover
+  border-color: #00ABE4
+  color: #FFFFFF
+  background-color: #00ABE4
+
+.delete_header_popup
+  display: flex
+  justify-content: space-between
+
+  & h2
+    margin: 0
+
+  & h1
+    margin: 0
+
+  & .popup_close
+    background-color: rgb(94, 182, 225)
+    border-radius: 45px
+    cursor: pointer
+    width: 25px
+    height: 25px
+
+  & .popup_close:hover
+    background-color: #00ABE4
+
+  & div
+    width: 100%
+    display: flex
+    justify-content: center
+    align-items: center
+    flex-direction: column
+
+.confirmButton
+  color: black
+  background-color: red
+  &:hover
+    color: #FFFFFF
+    background-color: red

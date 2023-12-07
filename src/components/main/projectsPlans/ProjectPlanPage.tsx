@@ -5,7 +5,7 @@ import {useDeleteProjectMutation} from "../../../api/ProjectApi";
 import {useState} from "react";
 import UpdateProjectPage from "../projects/UpdateProjectComponent";
 import ErrorPopup from "../../error/ErrorPopup";
-import styles from "../../../css/main/projects/ProjectPage.module.sass";
+import styles from "../../../css/main/projectsPlans/ProjectPlanPage.module.sass";
 import {Accordion, AccordionDetails, AccordionSummary, Button, Typography} from "@mui/material";
 import {buttonCss} from "../../../utils/MuiButtonCss";
 import Popup from "reactjs-popup";
@@ -18,7 +18,6 @@ import {selectProjects} from "../../../slices/ProjectsSlice";
 import CreateProjectPage from "../projects/CreateProjectPage";
 
 export default function ProjectPlanPage() {
-    // TODO: remember to have button to transform plan to project
     const [deleteProjectPlanApi] = useDeleteProjectPlanMutation()
 
     const [error, setError] = useState<any>(null)
