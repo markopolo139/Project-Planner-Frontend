@@ -17,7 +17,7 @@ export default function AllProjectPlansPage() {
 
     const [open, setOpen] = useState(false)
 
-    const projects = useSelector(selectProjects)
+    const projects = useSelector(selectProjects).filter(it => !projectsPlans.map(plan => plan.title).includes(it.title))
     const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
     function handleSelectProjectButton(_: any) {
