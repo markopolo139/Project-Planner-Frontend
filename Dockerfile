@@ -11,7 +11,7 @@ ARG NODE_VERSION=20.5.1
 FROM node:${NODE_VERSION}-alpine as base
 
 # Set working directory for all build stages.
-WORKDIR /usr/src/app
+WORKDIR /frontend
 
 
 ################################################################################
@@ -39,7 +39,7 @@ RUN --mount=type=bind,source=package.json,target=package.json \
     npm ci
 
 # Copy the rest of the source files into the image.
-COPY . .
+COPY . ./
 # Run the build script.
 RUN npm run build
 
@@ -59,9 +59,9 @@ COPY package.json .
 
 # Copy the production dependencies from the deps stage and also
 # the built application from the build stage into the image.
-COPY --from=deps /usr/src/app/node_modules ./node_modules
-COPY --from=build /usr/src/app//build .//build
-
+COPY --from=deps /frontend/node_modules ./node_modules
+COPY --from=build /frontend/build ./build
+COPY . /frontend
 
 # Expose the port that the application listens on.
 EXPOSE 3000
