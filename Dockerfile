@@ -61,7 +61,8 @@ COPY package.json .
 # the built application from the build stage into the image.
 COPY --from=deps /frontend/node_modules ./node_modules
 COPY --from=build /frontend/build ./build
-COPY . /frontend
+
+COPY --chown=node:node . /frontend
 
 # Expose the port that the application listens on.
 EXPOSE 3000
