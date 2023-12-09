@@ -23,9 +23,9 @@ export default function CreateProjectPage(props: CreateProjectProps) {
     const dispatch = useDispatch()
     const { register, handleSubmit } = useForm();
 
-    const [technologies, setTechnologies] = useState<string[]>([])
-    const [features, setFeatures] = useState<string[]>([])
-    const [goals, setGoals] = useState<string[]>([])
+    const [technologies, setTechnologies] = useState<string[]>(props.technologies ?? [])
+    const [features, setFeatures] = useState<string[]>(props.features ?? [])
+    const [goals, setGoals] = useState<string[]>(props.goals ?? [])
     const [technology, setTechnology] = useState<string>("")
     const [feature, setFeature] = useState<string>("")
     const [goal, setGoal] = useState<string>("")

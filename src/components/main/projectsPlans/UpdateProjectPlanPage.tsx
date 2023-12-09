@@ -40,7 +40,6 @@ export default function UpdateProjectPlanPage(props: UpdateProjectPlanProps) {
                         props.setUpdateProject(false)
                         if (data) {
                             dispatch(updateProjectPlan(data))
-                            navigate("..", { replace: true, relative: "path" })
                         }
                     }}>Return</Button>
                 </div>
@@ -59,7 +58,7 @@ export default function UpdateProjectPlanPage(props: UpdateProjectPlanProps) {
                 updateProjectPlanApi(projectPlan)
             })}>
                 <input hidden value={props.projectPlanId} type="number" {...register("projectPlanId")}></input>
-                <h2>Create project Plan:</h2>
+                <h2>Update project Plan:</h2>
 
                 <div className={styles.inputs}>
                     <div className={styles.input}>
@@ -160,7 +159,7 @@ export default function UpdateProjectPlanPage(props: UpdateProjectPlanProps) {
                     </div>
                 </div>
                 <div className={styles.buttons}>
-                    <Button className={styles.button} sx={buttonCss} variant="outlined" type="submit">Create Project Plan</Button>
+                    <Button className={styles.button} sx={buttonCss} variant="outlined" type="submit">Update Project Plan</Button>
                     <Button className={styles.button} sx={buttonCss} variant="outlined" onClick={e => {
                         props.setUpdateProject(false)
                     }}>Return</Button>

@@ -39,7 +39,7 @@ export default function ProjectPlanPage() {
         return <UpdateProjectPlanPage setUpdateProject={setUpdate} {...projectPlan} />
 
     if (isTransform)
-        return <CreateProjectPage setCreateProject={setTransform} />
+        return <CreateProjectPage setCreateProject={setTransform} {...projectPlan}/>
 
     return (
         <div>
